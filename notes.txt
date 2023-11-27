@@ -1,0 +1,29 @@
+Admin&&merchant ==> admin dapat mengakses fitur dari merchant
+
+AdminController --resources:
+public function index(){}
+public function create(){}
+public function store(Request $request){}
+public function show($id){}
+public function edit($id){}
+public function update(Request $request, $id){}
+public function destroy($id){}
+
+public function login()
+{return view('adminjr.login');}
+
+public function authenticate(Request $request): RedirectResponse
+    {
+        $credentials = $request->validate([
+            'email' => ['required'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('adminjr.dash');
+        } else {
+            return redirect()->route('adminjr.login')->with('Invalid Username or Password');
+        }
+    }
+
