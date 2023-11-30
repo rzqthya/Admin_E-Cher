@@ -11,7 +11,9 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
+                <a href="{{ route('admin.merch.create') }}" class="btn btn-success mb-5 ">+ Tambah Marchant</a>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
                     <thead>
                         <tr>
                             <th>Nama Merchant</th>

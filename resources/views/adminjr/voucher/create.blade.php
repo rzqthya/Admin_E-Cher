@@ -41,7 +41,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                @include('adminjr.components.content.voucher.index')
+                @include('adminjr.components.content.voucher.create')
                 <!-- /.container-fluid -->
 
             </div>

@@ -12,6 +12,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
+                <a href="{{ route('voucher.create') }}" class="btn btn-success mb-5 ">+ Tambah Voucher</a>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -43,7 +44,9 @@
                                         {{-- Hapus --}}
                                         <a href="{{ route('voucher.delete', ['id']) }}" class="btn btn-danger btn-sm"
                                             data-toggle="modal" data-target="#exampleModalCenter{{ $voucher->id }}"><i
-                                                class="fas fa-trash-alt"></i></a>
+                                                class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </span>
                                 </td>
                             </tr>
                         </tbody>

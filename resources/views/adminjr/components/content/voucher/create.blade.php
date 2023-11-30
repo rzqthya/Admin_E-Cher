@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group">
                     <label for="foto" class="col-form-label">Upload Foto Voucher</label>
-                    <input type="file" class="form-control" id="fotoVoucher" name="fotoVoucher" accept="image/*">
+                    <input type="file" class="form-control" id="fotoVoucher" name="fotoVoucher" accept="image/*" required>
                 </div>
                 <div class="form-group">
                     <label for="merchant_id" class="col-form-label">Merchant</label>
