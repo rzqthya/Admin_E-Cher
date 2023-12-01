@@ -36,7 +36,9 @@ class MerchantController extends Controller
             $name = $user->nama_merchant;
             $vouchers = Voucher::where('merchant_id', $merchantId)->get();
 
-            return view('merchant.dashboard', compact('totalTerklaim', 'totalBelumTerklaim', 'name', 'vouchers'));
+            $activePage = 'Dashboard';
+
+            return view('merchant.dashboard', compact('totalTerklaim', 'totalBelumTerklaim', 'name', 'vouchers', 'activePage'));
         } else {
 
             return redirect()->route('merchant.login');
@@ -51,8 +53,10 @@ class MerchantController extends Controller
         // Dapatkan semua formulir yang memiliki merchant_id yang sama dengan merchant yang login
         $formulirs = Formulir::where('merchant_id', $user->id)->get();
 
+        $activePage = 'KlaimVoucher';
+
         // Kembalikan tampilan Blade dengan data formulirs
-        return view('merchant.checkvoc', compact('formulirs', 'name'));
+        return view('merchant.checkvoc', compact('formulirs', 'name', 'activePage'));
     }
 
     public function pakaivoc()
@@ -63,7 +67,9 @@ class MerchantController extends Controller
 
         $formulirs = Formulir::where('merchant_id', $user->id)->where('status_klaim', true)->get();
 
-        return view('merchant.pakaivoc', compact('formulirs', 'name'));
+        $activePage = 'VoucherTerklaim';
+
+        return view('merchant.pakaivoc', compact('formulirs', 'name', 'activePage'));
     }
 
     public function approve($id)

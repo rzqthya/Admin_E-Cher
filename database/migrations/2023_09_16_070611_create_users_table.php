@@ -4,18 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-
+class CreateUsersTable extends Migration
+{
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_admin');
-            $table->string('email_admin')->nullable()->default(''); //sementara
-            $table->string('password_admin')->nullable()->default(''); //sementara
-            // $table->string('level');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('nama');
+            $table->string('email');
+            $table->string('password');
+            $table->string('noTelp');
+            $table->string('role');
+            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -23,4 +23,4 @@ return new class extends Migration {
     {
         Schema::dropIfExists('users');
     }
-};
+}
