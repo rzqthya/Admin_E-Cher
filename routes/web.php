@@ -28,13 +28,7 @@ Auth::routes();
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/filter-merchant-voucher', [HomeController::class, 'filter']);
-    Route::get('/voucher-page', [HomeController::class, 'showVoucher'])->name('voucher-page');
-    Route::get('form', [UserController::class, 'index'])->name('form');
-    Route::get('/form/{voucher_id}/{merchant_id}', [UserController::class, 'showForm'])->name('form');
-    Route::post('/process-form', [UserController::class, 'processForm'])->name('processForm');
 });
-
 
 //login logout Admin
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

@@ -2,42 +2,29 @@
 
 namespace App\Models;
 
-use App\Models\Formulir;
-use App\Models\Kota;
-use App\Models\User;
-use App\Models\Voucher;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 
-class Merchant extends Model implements Authenticatable
+class Merchant extends Model
 {
-    use HasFactory, AuthenticatableTrait;
+    protected $fillable = ['users_id', 'kota_id', 'merchant', 'kategori', 'alamat'];
 
-    protected $fillable = [
-        'nama_merchant',
-        'kategori',
-        'alamat',
-        'no_telp',
-        'email',
-        'password',
-        'kota_id',
-    ];
-
-    protected $table = 'merchant';
-
-    public function kota()
+    public function user()
     {
-        return $this->belongsTo(Kota::class, 'kota_id');
+        return $this->belongsTo(User::class, 'users_id');
     }
+
+    public function kotas()
+    {
+        return $this->hasMany(Kota::class, 'kota_id');
+    }
+
     public function vouchers()
     {
-        return $this->hasMany(Voucher::class);
+        return $this->hasMany(Voucher::class, 'merchant_id');
     }
 
     public function formulir()
     {
-        return $this->hasOne(Formulir::class);
+        return $this->belongsTo(Formulir::class);
     }
 }

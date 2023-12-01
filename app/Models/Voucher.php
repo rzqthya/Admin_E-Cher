@@ -1,23 +1,13 @@
 <?php
+// app/Models/Voucher.php
 
 namespace App\Models;
 
-use App\Models\Formulir;
-use App\Models\Merchant;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Voucher extends Model
 {
-    protected $fillable = [
-        'nama_voucher',
-        'deskripsi_voucher',
-        'masa_berlaku',
-        'fotoVoucher',
-        'merchant_id',
-    ];
-
-    protected $table = 'voucher';
+    protected $fillable = ['merchant_id', 'voucher', 'deskripsi', 'masaBerlaku', 'image'];
 
     public function merchant()
     {
@@ -26,8 +16,6 @@ class Voucher extends Model
 
     public function formulir()
     {
-        return $this->belongsTo(Formulir::class);
+        return $this->hasOne(Formulir::class, 'voucher_id');
     }
-
-
 }

@@ -2,30 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Formulir extends Model
 {
-    protected $fillable = [
-        'nama_user',
-        'email_user',
-        'nopol',
-        'no_hp',
-        'uploadFoto',
-        'wilayah_id',
-        'merchant_id',
-        'voucher_id',
-        'status_voucher',
-        'status_klaim',
-    ];
-
-    protected $table = 'formulir';
-
-    public function merchant()
-    {
-        return $this->belongsTo(Merchant::class, 'merchant_id');
-    }
+    protected $fillable = ['voucher_id', 'wilayah_id', 'users_id', 'nama', 'nopol', 'image'];
 
     public function voucher()
     {
@@ -34,9 +15,11 @@ class Formulir extends Model
 
     public function wilayah()
     {
-        return $this->belongsTo(Wilayah::class, 'wilayah_id');
+        return $this->hasOne(Wilayah::class, 'wilayah_id');
     }
 
-
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
 }
-

@@ -1,162 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Voucher Samsat</title>
-    @vite('resources/sass/app.scss')
-    <link href="/node_modules/lightbox2/dist/css/lightbox.css" rel="stylesheet">
-
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/auth/images/icon/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/metisMenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/slicknav.min.css') }}">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
+        media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/typography.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/default-css.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/auth/css/responsive.css') }}">
+    <!-- modernizr css -->
+    <script src="{{ asset('assets/auth/js/vendor/modernizr-2.8.3.min.js') }}"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-lg">
+
+    <!-- preloader area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- login area start -->
+    <div class="login-area">
         <div class="container">
-            <img class="rounded mr-1" src="{{ Vite::asset('resources/images/Logo.png') }}" width="180" height="50"
-                alt="image">
-            <div class="col-sm-5 mx-auto d-block text-center">
-                <img class="rounded mr-1" src="{{ Vite::asset('resources/images/poldajatim.png') }}" width="53"
-                    height="60" alt="image">
-                <img class="rounded mr-1" src="{{ Vite::asset('resources/images/provjatim.png') }}" width="42"
-                    height="60" alt="image">
-                <img class="rounded mr-1" src="{{ Vite::asset('resources/images/jasaraharja.png') }}" width="59"
-                    height="60" alt="image">
-            </div>
-            <div class="col-md-2">
-                <div class="mb-3">
-                    <label for="filterSelect" class="form-label"></label>
-                    <select class="form-select" id="select_res">
-                        <option value="all">Pilih Kota...</option>
-                        @foreach ($cities as $city)
-                            <option value="{{ $city->id }}">{{ $city->nama_kota }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-        </div>
-    </nav>
+            <div class="login-box ptb--100">
+                <form method="POST" action="{{ route('merchant.login') }}">
+                    @csrf
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="login-form-head">
+                        <h4>Login</h4>
+                        <p>Login untuk masuk ke halaman dashboard.</p>
+                    </div>
+                    <div class="login-form-body">
+                        <div class="form-gp">
+                            <label for="email">Email address</label>
+                            <input type="email" name="email" id="email">
+                            <i class="ti-email"></i>
+                            <div class="text-danger"></div>
+                        </div>
+                        <div class="form-gp">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password">
+                            <i class="ti-lock"></i>
+                            <div class="text-danger"></div>
+                        </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#select_res').on('change', function() {
-                var selectedCityId = $(this).val();
-                // Kirim permintaan Ajax
-                $.ajax({
-                    url: '/filter-merchant-voucher',
-                    type: 'GET',
-                    data: {
-                        city_id: selectedCityId
-                    },
-                    success: function(data) {
-                        $('#row_merchants').html(data);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            });
-        });
-    </script>
-
-
-    <!--Content-->
-    <div class="container mt-4">
-        <div class="row d-flex justify-content-center justify-item-center" id="row_merchants">
-            <div class="col-md-4">
-                @foreach ($vouchers as $voucher)
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <a href="javascript:void(0)" data-bs-toggle="modal"
-                                    data-bs-target="#imageModal{{ $voucher->merchant->id }}">
-                                    <img src="{{ asset('storage') . '/' . $voucher->fotoVoucher }}"
-                                        class="img-fluid rounded-start"alt="image">
-                                </a>
-
-
-                                {{-- <a href="javascript:void(0)" data-toggle="modal"
-                                    data-target="#imageModal{{ $voucher->merchant->id }}"> --}}
-                                {{-- <a href="{{ asset('storage') . '/' . $voucher->fotoVoucher }}"
-                                    data-lightbox="voucher-image"> --}}
-                                {{-- <img src="{{ asset('storage') . '/' . $voucher->fotoVoucher }}"
-                                        class="img-fluid rounded-start"alt="image">
-                                </a> --}}
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $voucher->merchant->nama_merchant }}</h5>
-                                    <h6 class="card-title">{{ $voucher->nama_voucher }}</h6>
-                                    <p class="card-text">{{ $voucher->merchant->kota->nama_kota }} -
-                                        {{ $voucher->merchant->kategori }}</p>
-                                    @if ($voucher->count() > 0)
-                                        <p class="card-text">Deskripsi Voucher:</p>
-                                        <ul>
-                                            <li>{{ $voucher->deskripsi_voucher }}</li>
-                                        </ul>
-                                    @else
-                                        <p class="card-text">Tidak ada deskripsi voucher.</p>
-                                    @endif
-                                    <a href="{{ route('form', ['voucher_id' => $voucher->id, 'merchant_id' => $voucher->merchant->id]) }}"
-                                        class="btn btn-primary">Get</a>
-                                </div>
-                            </div>
+                        <div class="submit-btn-area">
+                            <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
                         </div>
                     </div>
-                    <!-- Modal -->
-                    {{-- ukuran gambar menyesuaikan --}}
-                    <div class="modal fade" id="imageModal{{ $voucher->merchant->id }}" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <!-- Konten modal seperti yang telah Anda definisikan sebelumnya -->
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <img src="{{ asset('storage') . '/' . $voucher->fotoVoucher }}" class="img-fluid"
-                                        alt="image">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- ukuran gambar w-100 --}}
-                    {{-- <div class="modal fade" id="imageModal{{ $voucher->merchant->id }}" tabindex="-1"
-                        aria-labelledby="exampleModalLabel">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <img src="{{ asset('storage') . '/' . $voucher->fotoVoucher }}"
-                                        class="img-fluid w-100">
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-                @endforeach
-
+                </form>
             </div>
         </div>
     </div>
+    <!-- login area end -->
 
+    <!-- jquery latest version -->
+    <script src="{{ asset('assets/auth/js/vendor/jquery-2.2.4.min.js') }}"></script>
+    <!-- bootstrap 4 js -->
+    <script src="{{ asset('assets/auth/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/auth/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/auth/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/auth/js/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('assets/auth/js/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ asset('assets/auth/js/jquery.slicknav.min.js') }}"></script>
 
-    <!-- Footer -->
-    <footer class="text-center py-4 footer-bg">
-        <div class="wave">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#ffffff" fill-opacity="1"
-                    d="M0,64L80,90.7C160,117,320,171,480,192C640,213,800,203,960,197.3C1120,192,1280,192,1360,192L1440,192L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z">
-                </path>
-            </svg>
-        </div>
-        <img src="{{ Vite::asset('resources/images/jasaraharja.png') }}" width="40" height="40" alt="image">
-        <dd><b>Copyright &copy
-                <script>
-                    document.write(new Date().getFullYear())
-                </script> PT Jasa Raharja Cabang Jawa Timur
-            </b></dd>
-        <dd>Build with <span style="color: #e25555;">&#9829;</span> by ITTelkom Surabaya</dd>
-    </footer>
-    @vite('resources/js/app.js')
-    <script src="/node_modules/lightbox2/dist/js/lightbox.js"></script>
+    <!-- others plugins -->
+    <script src="{{ asset('assets/auth/js/plugins.js') }}"></script>
+    <script src="{{ asset('assets/auth/js/scripts.js') }}"></script>
 </body>
-
 
 </html>

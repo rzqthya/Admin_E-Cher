@@ -14,8 +14,8 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('noTelp');
-            $table->string('role');
-            $table->timestamp('created_at')->nullable();
+            $table->enum('role', ['customer', 'merchant', 'admin']);
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
