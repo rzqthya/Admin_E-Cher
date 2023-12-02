@@ -41,6 +41,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     // Route::get('/admin', [AdminController::class, 'admindash'])->name('dashboard');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
     //rute manjemen merchant
     Route::get('/merch/daftar/index', [AdminController::class, 'index'])->name('admin.merch.index');

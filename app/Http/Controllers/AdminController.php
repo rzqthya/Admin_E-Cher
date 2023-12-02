@@ -204,4 +204,12 @@ class AdminController extends Controller
 
         return response()->file($path);
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        // Redirect ke halaman home
+        return redirect()->route('home');
+    }
+
 }

@@ -1,8 +1,7 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Daftar Merchant</h1>
-    <p class="mb-4">Berikut adalah daftar merchant yang tersebar di seluruh Jawa Timur. Klik <a
-            href="{{ route('admin.merch.create') }}">disini</a> untuk menambahkan merhant baru.</p>
+    <p class="mb-4">Berikut adalah daftar merchant yang tersebar di seluruh Jawa Timur. Klik <a href="{{ route('admin.merch.create') }}">disini</a> untuk menambahkan merhant baru.</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -24,41 +23,35 @@
                     </thead>
 
                     @foreach ($merchants as $merchant)
-                        <tbody>
-                            <tr>
-                                <td>{{ $merchant->merchant }}</td>
-                                <td>{{ $merchant->kategori }}</td>
-                                <td>{{ $merchant->kotas->kota }}</td>
-                                <td>{{ $merchant->alamat }}</td>
-                                <td>{{ $merchant->created_at->format('Y-m-d') }}</td>
-                                <td>
-                                    {{-- detail --}}
-                                    <a href="#" class="btn btn-primary btn-sm" data-toggle="modal"
-                                        data-target="#myModal{{ $merchant->id }}"><i
-                                            class="fas fa-solid fa-magnifying-glass"></i></a>
-                                    <span>
-                                        {{-- Edit --}}
-                                        <a href="{{ route('admin.merch.edit', ['id' => $merchant->id]) }}"
-                                            class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                    </span>
-                                    <span>
-                                        <a href="" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#exampleModalCenter{{ $merchant->id }}"><i
-                                                class="fas fa-trash-alt"></i></a>
+                    <tbody>
+                        <tr>
+                            <td>{{ $merchant->merchant }}</td>
+                            <td>{{ $merchant->kategori }}</td>
+                            <td>{{ $merchant->kota ? $merchant->kota->kota : 'N/A' }}</td>
+                            <td>{{ $merchant->alamat }}</td>
+                            <td>{{ $merchant->created_at->format('Y-m-d') }}</td>
+                            <td>
+                                {{-- detail --}}
+                                <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal{{ $merchant->id }}"><i class="fas fa-solid fa-magnifying-glass"></i></a>
+                                <span>
+                                    {{-- Edit --}}
+                                    <a href="{{ route('admin.merch.edit', ['id' => $merchant->id]) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                </span>
+                                <span>
+                                    <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter{{ $merchant->id }}"><i class="fas fa-trash-alt"></i></a>
 
-                                    </span>
+                                </span>
 
 
-                                </td>
-                            </tr>
-                        </tbody>
+                            </td>
+                        </tr>
+                    </tbody>
                     @endforeach
                 </table>
             </div>
 
 
-            <div class="modal fade" id="exampleModalCenter{{ $merchant->id }}" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="exampleModalCenter{{ $merchant->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -84,47 +77,48 @@
             </div>
 
             @foreach ($merchants as $merchant)
-                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-                    aria-labelledby="myLargeModalLabel" id="myModal{{ $merchant->id }}" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Data Merchant</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <!-- Kolom pertama -->
-                                        <div class="mb-3">
-                                            <strong>Nama Merchant:</strong>
-                                            <p>{{ $merchant->nama_merchant }}</p>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <strong>Kategori:</strong>
-                                            <p>{{ $merchant->kategori }}</p>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <strong>Nama Kota Terdaftar:</strong>
-                                            <p>{{ $merchant->kota->nama_kota }}</p>
-                                        </div>
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal{{ $merchant->id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Data Merchant</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Kolom pertama -->
+                                    <div class="mb-3">
+                                        <strong>Nama Merchant:</strong>
+                                        <p>{{ $merchant->merchant }}</p>
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <!-- Kolom kedua -->
-                                        <div class="mb-3">
-                                            <strong>Alamat Merchant:</strong>
-                                            <p>{{ $merchant->alamat }}</p>
-                                        </div>
+                                    <div class="mb-3">
+                                        <strong>Kategori:</strong>
+                                        <p>{{ $merchant->kategori }}</p>
+                                    </div>
 
+                                    <div class="mb-3">
+                                        <strong>Nama Kota Terdaftar:</strong>
+                                        <p>{{ $merchant->kota ? $merchant->kota->kota : 'N/A' }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <!-- Kolom kedua -->
+                                    <div class="mb-3">
+                                        <strong>Alamat Merchant:</strong>
+                                        <p>{{ $merchant->alamat }}</p>
+                                    </div>
+
+                                    <div class="mb-6">
                                         <div class="mb-3">
                                             <strong>Email:</strong>
-                                            <p>{{ $merchant->email }}</p>
+                                            <p>{{ $merchant->user->email }}</p>
                                         </div>
+
 
                                         <div class="mb-3">
                                             <strong>Tanggal Terdaftar:</strong>
@@ -138,7 +132,7 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
-</div>

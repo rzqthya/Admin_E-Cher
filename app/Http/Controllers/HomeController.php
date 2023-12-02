@@ -29,9 +29,4 @@ class HomeController extends Controller
         return back()->withErrors(['email' => 'Kredensial tidak valid']);
     }
 
-    public function logout()
-    {
-        Auth::logout();
-        return redirect('login');
-    }
 }
