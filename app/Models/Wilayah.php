@@ -9,6 +9,8 @@ class Wilayah extends Model
 {
     protected $fillable = ['samsat', 'alamat'];
 
+    protected $table = 'wilayahs';
+
     public function formulir()
     {
         return $this->belongsTo(Formulir::class, 'wilayah_id');

@@ -23,6 +23,11 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
+    public function dashboard()
+    {
+        return view('adminjr.dash');
+    }
+
     public function index()
     {
         $user = Auth::user();
@@ -43,8 +48,7 @@ class AdminController extends Controller
 
     public function admindash()
     {
-        // $user = Auth::user();
-        // $name = $user->name;
+
         $totalMerchant = DB::table('merchant')->count();
         $totalVoucher = DB::table('formulir')->count();
         $voucherTerpakai = Formulir::where('status_voucher', 1)->where('status_klaim', 1)->count();

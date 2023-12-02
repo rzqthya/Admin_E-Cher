@@ -8,6 +8,8 @@ class Merchant extends Model
 {
     protected $fillable = ['users_id', 'kota_id', 'merchant', 'kategori', 'alamat'];
 
+    protected $table = 'merchants';
+
     public function user()
     {
         return $this->belongsTo(User::class, 'users_id');

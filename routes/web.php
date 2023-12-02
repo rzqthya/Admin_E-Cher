@@ -11,7 +11,7 @@ use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
+// use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,19 +26,20 @@ use App\Http\Controllers\UserController;
 
 Auth::routes();
 
+// Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+// Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::post('/login', [HomeController::class, 'login']);
 });
 
-//login logout Admin
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //middleware admin
 Route::middleware(['web'])->group(function () {
     //rute dasboard
-    Route::get('/admin', [AdminController::class, 'admindash'])->name('dashboard');
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    // Route::get('/admin', [AdminController::class, 'admindash'])->name('dashboard');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
 
     //rute manjemen merchant
@@ -60,11 +61,6 @@ Route::middleware(['web'])->group(function () {
     Route::put('voucher/edit/{id}', [VoucherController::class, 'update'])->name('voucher.update');
     Route::delete('/voucher/delete/{id}', [VoucherController::class, 'destroy'])->name('voucher.delete');
 });
-
-//login logout merchant
-Route::get('/merchant', [MerchantAuthController::class, 'showLoginForm'])->name('merchant.login');
-Route::post('/merchant', [MerchantAuthController::class, 'login']);
-Route::post('/merchant/logout', [MerchantAuthController::class, 'logout'])->name('merchant.logout');
 
 Route::middleware(['merchant'])->group(function () {
     Route::get('/merchant/dashboard', [MerchantController::class, 'index'])->name('merchant.dashboard');
