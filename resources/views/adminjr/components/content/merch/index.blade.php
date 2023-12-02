@@ -26,9 +26,9 @@
                     @foreach ($merchants as $merchant)
                         <tbody>
                             <tr>
-                                <td>{{ $merchant->nama_merchant }}</td>
+                                <td>{{ $merchant->merchant }}</td>
                                 <td>{{ $merchant->kategori }}</td>
-                                <td>{{ $merchant->kota->nama_kota }}</td>
+                                <td>{{ $merchant->kotas->kota }}</td>
                                 <td>{{ $merchant->alamat }}</td>
                                 <td>{{ $merchant->created_at->format('Y-m-d') }}</td>
                                 <td>

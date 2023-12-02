@@ -15,9 +15,9 @@ class Merchant extends Model
         return $this->belongsTo(User::class, 'users_id');
     }
 
-    public function kotas()
+    public function kota()
     {
-        return $this->hasMany(Kota::class, 'kota_id');
+        return $this->belongsTo(Kota::class, 'kota_id');
     }
 
     public function vouchers()

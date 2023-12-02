@@ -12,6 +12,6 @@ class Kota extends Model
 
     public function merchant()
     {
-        return $this->belongsTo(Merchant::class, 'kota_id');
+        return $this->belongsTo(Merchant::class);
     }
 }
