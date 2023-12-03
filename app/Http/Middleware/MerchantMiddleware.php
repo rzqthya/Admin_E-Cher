@@ -11,12 +11,10 @@ class MerchantMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        // Periksa apakah pengguna yang sedang mencoba mengakses rute ini adalah merchant
-        if (Auth::guard('merchant')->check()) {
+        if (Auth::check() && Auth::user()->role == 'merchant') {
             return $next($request);
         }
 
-        // Jika bukan merchant, Anda dapat mengarahkan mereka ke halaman lain atau menolak akses
-        return redirect('merchant.dashboard'); // Ganti dengan URL atau rute yang sesuai
+        return redirect()->route('home');
     }
 }

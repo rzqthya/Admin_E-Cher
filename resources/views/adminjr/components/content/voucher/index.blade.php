@@ -26,10 +26,10 @@
                     @foreach ($vouchers as $voucher)
                         <tbody>
                             <tr>
-                                <td>{{ $voucher->nama_voucher }}</td>
-                                <td>{{ $voucher->deskripsi_voucher }}</td>
-                                <td>{{ $voucher->masa_berlaku }}</td>
-                                <td>{{ $voucher->merchant->nama_merchant }}</td>
+                                <td>{{ $voucher->voucher }}</td>
+                                <td>{{ $voucher->deskripsi }}</td>
+                                <td>{{ $voucher->masaBerlaku }}</td>
+                                <td>{{ $voucher->merchant->merchant }}</td>
                                 <td>
                                     {{-- detail --}}
                                     <a href="#" class="btn btn-primary btn-sm" data-toggle="modal"

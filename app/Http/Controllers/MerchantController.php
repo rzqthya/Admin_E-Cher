@@ -15,6 +15,15 @@ use Illuminate\Support\Facades\Validator;
 
 class MerchantController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function dashboard()
+    {
+        return view('merchant.dashboard');
+    }
 
     public function index()
     {
@@ -39,9 +48,6 @@ class MerchantController extends Controller
             $activePage = 'Dashboard';
 
             return view('merchant.dashboard', compact('totalTerklaim', 'totalBelumTerklaim', 'name', 'vouchers', 'activePage'));
-        } else {
-
-            return redirect()->route('merchant.login');
         }
     }
 
