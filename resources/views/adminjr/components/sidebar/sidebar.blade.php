@@ -3,9 +3,8 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3"><img class="rounded mr-1"
-                src="{{ Vite::asset('resources/images/Logo.png') }}" width="180" height="50"
-                alt="image"></div>
+        <div class="sidebar-brand-text mx-3"><img class="rounded mr-1" src="{{ Vite::asset('resources/images/Logo.png') }}"
+                width="180" height="50" alt="image"></div>
     </a>
 
     <!-- Divider -->
@@ -49,12 +48,27 @@
             <i class="fas fa-fw fa-ticket-alt"></i>
             <span>Voucher</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('adminjr.voucher') }}"> Daftar Voucher</a>
                 <a class="collapse-item" href="{{ route('admin.voc.klaim') }}">Check Klaim Voucher</a>
                 <a class="collapse-item" href="{{ route('adminjr.voc.berhasil') }}">Voucher Berhasil Klaim</a>
+                {{-- <a class="collapse-item" href="{{ route('adminjr.voc.gagal') }}">Voucher Gagal Klaim</a> --}}
+
+            </div>
+        </div>
+    </li>
+    {{-- Users --}}
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#usersdropdown"
+            aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fa-solid fa-user"></i>
+            <span>Users</span>
+        </a>
+        <div id="usersdropdown" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('adminjr.user.index') }}"> Daftar User</a>
+
                 {{-- <a class="collapse-item" href="{{ route('adminjr.voc.gagal') }}">Voucher Gagal Klaim</a> --}}
 
             </div>

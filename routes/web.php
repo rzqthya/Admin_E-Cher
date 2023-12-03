@@ -59,6 +59,10 @@ Route::middleware(['web'])->group(function () {
     Route::get('voucher/edit/{id}', [VoucherController::class, 'edit'])->name('voucher.edit');
     Route::put('voucher/edit/{id}', [VoucherController::class, 'update'])->name('voucher.update');
     Route::delete('/voucher/delete/{id}', [VoucherController::class, 'destroy'])->name('voucher.delete');
+
+    // route daftar customer
+    Route::get('/user/index', function () {
+        return view('adminjr/user/index'); })->name('adminjr.user.index');
 });
 
 //login logout merchant
