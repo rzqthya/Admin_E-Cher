@@ -8,7 +8,7 @@ class CreateMerchantTable extends Migration
 {
     public function up()
     {
-        Schema::create('merchant', function (Blueprint $table) {
+        Schema::create('merchants', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('users_id');
             $table->unsignedBigInteger('kota_id');
@@ -17,12 +17,12 @@ class CreateMerchantTable extends Migration
             $table->string('alamat');
             $table->timestamp('created_at')->nullable();
             $table->foreign('users_id')->references('id')->on('users');
-            $table->foreign('kota_id')->references('id')->on('kota');
+            $table->foreign('kota_id')->references('id')->on('kotas');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('merchant');
+        Schema::dropIfExists('merchants');
     }
 }

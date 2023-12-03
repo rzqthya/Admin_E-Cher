@@ -7,7 +7,7 @@ class CreateVoucherTable extends Migration
 {
     public function up()
     {
-        Schema::create('voucher', function (Blueprint $table) {
+        Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('merchant_id');
             $table->string('voucher');
@@ -15,12 +15,12 @@ class CreateVoucherTable extends Migration
             $table->dateTime('masaBerlaku');
             $table->string('image');
             $table->timestamp('created_at')->nullable();
-            $table->foreign('merchant_id')->references('id')->on('merchant');
+            $table->foreign('merchant_id')->references('id')->on('merchants');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('voucher');
+        Schema::dropIfExists('vouchers');
     }
 }

@@ -9,7 +9,7 @@ class MerchantAuthController extends Controller
 {
     public function showLoginForm()
     {
-        return view('merchant.login'); // Ganti dengan tampilan login merchant yang sesuai
+        return view('merchant.login'); 
     }
 
     public function login(Request $request)
@@ -18,12 +18,9 @@ class MerchantAuthController extends Controller
 
 
         if (Auth::guard('merchant')->attempt($credentials)) {
-            // Autentikasi berhasil, redirect ke halaman merchant
             return redirect()->route('merchant.dashboard');
         }
         // dd($credentials);
-
-        // Autentikasi gagal, tampilkan pesan error
         return back()->withErrors(['email' => 'Invalid credentials']);
     }
 

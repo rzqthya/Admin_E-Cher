@@ -59,14 +59,7 @@
                                                 <input id="password" type="password" name="password" value="{{ old('password') }}"
                                                     class="form-control">
                                             </div>
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox small">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="customCheck">
-                                                    <label class="custom-control-label" for="customCheck">Remember
-                                                        Me</label>
-                                                </div>
-                                            </div>
+                                    
                                             <div class="mb-3 d-grid">
                                                 <button name="submit" type="submit"
                                                     class="btn btn-primary">Login</button>

@@ -31,12 +31,11 @@
     <div id="preloader">
         <div class="loader"></div>
     </div>
-    <!-- preloader area end -->
     <!-- login area start -->
     <div class="login-area">
         <div class="container">
             <div class="login-box ptb--100">
-                <form method="POST" action="{{ route('merchant.login') }}">
+                <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="login-form-head">
@@ -58,7 +57,7 @@
                         </div>
 
                         <div class="submit-btn-area">
-                            <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
+                            <button id="form_submit" name="submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
                         </div>
                     </div>
                 </form>

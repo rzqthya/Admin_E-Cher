@@ -1,19 +1,19 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-@include('layouts.merchant.head')
+@include('merchant.layouts.head')
 
 <body>
-    @include('layouts.merchant.preloader')
+    @include('merchant.layouts.preloader')
     <div class="page-container">
         <!-- Include the sidebar -->
-        @include('layouts.merchant.sidebar')
+        @include('merchant.layouts.sidebar')
         <!-- main content area start -->
         <div class="main-content">
             <!-- Include the header area  -->
-            @include('layouts.merchant.header')
+            @include('merchant.layouts.header')
             <!-- Include the page title -->
-            @include('layouts.merchant.page-title')
+            @include('merchant.layouts.page-title')
             <div class="main-content-inner">
                 <!-- Include the main content for checkvoucher -->
                 @yield('content')

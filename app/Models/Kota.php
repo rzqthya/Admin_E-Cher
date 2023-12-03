@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Kota extends Model
 {
     protected $fillable = ['kota'];
+    
+    protected $table = 'kotas';
 
     public function merchant()
     {
-        return $this->belongsTo(Merchant::class, 'kota_id');
+        return $this->belongsTo(Merchant::class);
     }
 }

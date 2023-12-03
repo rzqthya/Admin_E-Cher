@@ -8,7 +8,7 @@ class CreateFormulirTable extends Migration
 {
     public function up()
     {
-        Schema::create('formulir', function (Blueprint $table) {
+        Schema::create('formulirs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('voucher_id');
             $table->unsignedBigInteger('wilayah_id');
@@ -17,14 +17,14 @@ class CreateFormulirTable extends Migration
             $table->string('nopol');
             $table->string('image');
             $table->timestamp('created_at')->nullable();
-            $table->foreign('voucher_id')->references('id')->on('voucher');
-            $table->foreign('wilayah_id')->references('id')->on('wilayah');
+            $table->foreign('voucher_id')->references('id')->on('vouchers');
+            $table->foreign('wilayah_id')->references('id')->on('wilayahs');
             $table->foreign('users_id')->references('id')->on('users');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('formulir');
+        Schema::dropIfExists('formulirs');
     }
 }

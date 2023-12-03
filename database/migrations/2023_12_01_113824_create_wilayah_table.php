@@ -8,7 +8,7 @@ class CreateWilayahTable extends Migration
 {
     public function up()
     {
-        Schema::create('wilayah', function (Blueprint $table) {
+        Schema::create('wilayahs', function (Blueprint $table) {
             $table->id();
             $table->string('samsat');
             $table->string('alamat');
@@ -18,6 +18,6 @@ class CreateWilayahTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('wilayah');
+        Schema::dropIfExists('wilayahs');
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.merchant.app')
+@extends('merchant.layouts.app')
 
 @section('content')
     <div class="card mt-5">

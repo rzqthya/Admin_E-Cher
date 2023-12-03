@@ -9,6 +9,8 @@ class Voucher extends Model
 {
     protected $fillable = ['merchant_id', 'voucher', 'deskripsi', 'masaBerlaku', 'image'];
 
+    protected $table = 'vouchers';
+
     public function merchant()
     {
         return $this->belongsTo(Merchant::class, 'merchant_id');

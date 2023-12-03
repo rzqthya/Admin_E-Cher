@@ -8,7 +8,7 @@ class CreateKotaTable extends Migration
 {
     public function up()
     {
-        Schema::create('kota', function (Blueprint $table) {
+        Schema::create('kotas', function (Blueprint $table) {
             $table->id();
             $table->string('kota');
             $table->timestamp('created_at')->nullable();
@@ -17,6 +17,6 @@ class CreateKotaTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('kota');
+        Schema::dropIfExists('kotas');
     }
 }
