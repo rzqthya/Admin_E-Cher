@@ -28,6 +28,13 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
+    public $timestamps = false; 
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *

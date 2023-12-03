@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Validator;
 class AdminController extends Controller
 {
 
-     public function __construct()
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -43,7 +43,7 @@ class AdminController extends Controller
         $name = $user->name;
         $id = auth()->id();
         $users = DB::table('users')->where('id', $id)->get();
-        return view('adminjr.profile', compact( 'users','name'));
+        return view('adminjr.profile', compact('users', 'name'));
     }
 
     public function admindash()
@@ -71,15 +71,14 @@ class AdminController extends Controller
             'required' => ':Attribute harus diisi.',
             'email' => 'Isi :attribute dengan format yang benar',
             'numeric' => 'Isi :attribute dengan angka',
-
         ];
 
         $validator = Validator::make($request->all(), [
-            'nama_merchant' => 'required|string',
+            'merchant' => 'required|string',
             'kategori' => 'required',
             'kota_id' => 'required',
             'alamat' => 'required|string',
-            'no_telp' => 'required|string',
+            'noTelp' => 'required|numeric',
             'email' => 'required|email',
             'password' => 'required|string',
         ], $messages);
@@ -89,15 +88,23 @@ class AdminController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $password = Hash::make($request->input('password')); // Mengenkripsi kata sandi
+        // Membuat dan menyimpan User terlebih dahulu
+        $user = new User([
+            'nama' => $request->input('merchant'),
+            'email' => $request->input('email'),
+            'noTelp' => $request->input('noTelp'),
+            'password' => Hash::make($request->input('password')),
+            'role' => 'merchant',
+        ]);
 
+        $user->save();
+
+        // Menggunakan User ID yang baru saja dibuat untuk membuat dan menyimpan Merchant
         $merchant = new Merchant([
-            'nama_merchant' => $request->input('nama_merchant'),
+            'users_id' => $user->id,
+            'merchant' => $request->input('merchant'),
             'kategori' => $request->input('kategori'),
             'alamat' => $request->input('alamat'),
-            'no_telp' => $request->input('no_telp'),
-            'email' => $request->input('email'),
-            'password' => $password, // Simpan kata sandi yang terenkripsi
             'kota_id' => $request->input('kota_id'),
         ]);
 
@@ -117,7 +124,7 @@ class AdminController extends Controller
         $cities = Kota::all();
         $merchants = Merchant::find($id);
 
-        return view('adminjr.merch.edit', compact('cities', 'merchants','name'));
+        return view('adminjr.merch.edit', compact('cities', 'merchants', 'name'));
     }
 
 
@@ -210,5 +217,4 @@ class AdminController extends Controller
         // Redirect ke halaman home
         return redirect()->route('home');
     }
-
 }

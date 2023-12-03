@@ -17,7 +17,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="example-text-input" class="col-form-label">Nama Merchant</label>
-                    <input class="form-control mb-4" id="nama_merchant" name="nama_merchant" type="text"
+                    <input class="form-control mb-4" id="merchant" name="merchant" type="text"
                         placeholder="Nama Merchant">
                 </div>
                 <div class="row">
@@ -27,7 +27,7 @@
                             <label for="kota_id" class="col-form-label">Kota/Kabupaten</label>
                             <select class="custom-select" id="kota_id" name="kota_id">
                                 @foreach ($cities as $city)
-                                    <option value="{{ $city->id }}">{{ $city->nama_kota }}</option>
+                                    <option value="{{ $city->id }}">{{ $city->kota }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <label for="example-text-input" class="col-form-label">No Telp</label>
-                            <input class="form-control mb-4" type="text" id="no_telp" name="no_telp"
+                            <input class="form-control mb-4" type="text" id="noTelp" name="noTelp"
                                 placeholder="Nomor Telepon">
                         </div>
 

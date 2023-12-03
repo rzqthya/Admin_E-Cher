@@ -10,6 +10,13 @@ class Merchant extends Model
 
     protected $table = 'merchants';
 
+    public $timestamps = false; 
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'users_id');
