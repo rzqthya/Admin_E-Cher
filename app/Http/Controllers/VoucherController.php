@@ -64,10 +64,10 @@ class VoucherController extends Controller
 
 
         $voucher = new Voucher([
-            'nama_voucher' => $request->input('nama_voucher'),
-            'deskripsi_voucher' => $request->input('deskripsi_voucher'),
-            'masa_berlaku' => $request->input('masa_berlaku'),
-            'fotoVoucher' => 'voucher/' . $originalFilename,
+            'voucher' => $request->input('voucher'),
+            'deskripsi' => $request->input('deskripsi'),
+            'masaBerlaku' => $request->input('masaBerlaku'),
+            'image' => 'voucher/' . $originalFilename,
             'merchant_id' => $request->input('merchant_id'),
         ]);
 
@@ -76,17 +76,10 @@ class VoucherController extends Controller
         return redirect()->route('adminjr.voucher')->with('success', 'Voucher berhasil ditambahkan.');
     }
 
-
-    public function show($id)
-    {
-        //
-    }
-
-
     public function edit($id)
     {
         $user = Auth::user();
-        $name = $user->name;
+        $name = $user->nama;
         $users = DB::table('users')->where('id', $id)->get();
         $merchants = Merchant::all();
         $vouchers = Voucher::find($id);
@@ -96,14 +89,13 @@ class VoucherController extends Controller
     public function update(Request $request, $id)
     {
         $voucher = Voucher::find($id);
-        $voucher->nama_voucher = $request->input('nama_voucher');
-        $voucher->deskripsi_voucher = $request->input('deskripsi_voucher');
-        $voucher->masa_berlaku = $request->input('masa_berlaku');
-        $voucher->fotoVoucher = $request->input('fotoVoucher');
+        $voucher->voucher = $request->input('voucher');
+        $voucher->deskripsi = $request->input('deskripsi');
+        $voucher->masaBerlaku = $request->input('masaBerlaku');
         $voucher->merchant_id = $request->input('merchant_id');
 
         $voucher->save();
-        // dump($voucher->save());
+        // dd($voucher->save());
 
         return redirect()->route('adminjr.voucher')->with('success', 'Data berhasil diperbarui');
     }

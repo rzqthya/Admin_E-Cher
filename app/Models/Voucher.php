@@ -11,6 +11,14 @@ class Voucher extends Model
 
     protected $table = 'vouchers';
 
+    public $timestamps = false; 
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'masaBerlaku'
+    ];
+
     public function merchant()
     {
         return $this->belongsTo(Merchant::class, 'merchant_id');

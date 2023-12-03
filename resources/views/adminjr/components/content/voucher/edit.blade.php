@@ -18,18 +18,18 @@
                 @method('PUT')
                 <div class="form-group">
                     <label for="example-text-input" class="col-form-label">Nama Voucher</label>
-                    <input class="form-control mb-4" type="text" id="nama_voucher"
-                        name="nama_voucher" value="{{ $vouchers->nama_voucher }}">
+                    <input class="form-control mb-4" type="text" id="voucher"
+                        name="voucher" value="{{ $vouchers->voucher }}">
                 </div>
                 <div class="form-group">
                     <label class="col-form-label">Deskripsi Voucher</label>
-                    <input class="form-control mb-4" type="text" id="deskripsi_voucher"
-                        name="deskripsi_voucher" value="{{ $vouchers->deskripsi_voucher }}">
+                    <input class="form-control mb-4" type="text" id="deskripsi"
+                        name="deskripsi" value="{{ $vouchers->deskripsi }}">
                 </div>
                 <div class="form-group">
                     <label class="col-form-label">Masa Berlaku</label>
-                    <input class="form-control mb-4" type="datetime-local" id="masa_berlaku"
-                        name="masa_berlaku" value="{{ $vouchers->masa_berlaku }}">
+                    <input class="form-control mb-4" type="datetime-local" id="masaBerlaku"
+                        name="masaBerlaku" value="{{ $vouchers->masaBerlaku }}">
                 </div>
                 <div class="form-group">
                     <label class="col-form-label">Merchant</label>
@@ -37,7 +37,7 @@
                         @foreach ($merchants as $merchant)
                             <option value="{{ $merchant->id }}"
                                 {{ $vouchers->merchant_id == $merchant->id ? 'selected' : '' }}>
-                                {{ $merchant->nama_merchant }}</option>
+                                {{ $merchant->merchant }}</option>
                         @endforeach
                     </select>
                 </div>
