@@ -57,7 +57,6 @@ class AdminController extends Controller
         return view('adminjr.dash', compact('totalMerchant', 'totalVoucher', 'voucherTerpakai', 'voucherTValidasi'));
     }
 
-
     public function create()
     {
 
