@@ -42,7 +42,7 @@ class MerchantController extends Controller
                 ->where('merchant_id', $merchantId)
                 ->count();
 
-            $name = $user->nama_merchant;
+            $name = $user->merchant;
             $vouchers = Voucher::where('merchant_id', $merchantId)->get();
 
             $activePage = 'Dashboard';

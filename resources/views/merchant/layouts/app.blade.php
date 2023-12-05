@@ -4,7 +4,7 @@
 @include('merchant.layouts.head')
 
 <body>
-    @include('merchant.layouts.preloader')
+    <!-- @include('merchant.layouts.preloader') -->
     <div class="page-container">
         <!-- Include the sidebar -->
         @include('merchant.layouts.sidebar')

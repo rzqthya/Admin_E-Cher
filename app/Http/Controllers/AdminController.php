@@ -99,7 +99,6 @@ class AdminController extends Controller
 
         $user->save();
 
-        // Menggunakan User ID yang baru saja dibuat untuk membuat dan menyimpan Merchant
         $merchant = new Merchant([
             'users_id' => $user->id,
             'merchant' => $request->input('merchant'),

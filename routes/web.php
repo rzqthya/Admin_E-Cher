@@ -68,8 +68,8 @@ Route::middleware(['web'])->group(function () {
 });
 
 Route::middleware(['merchant'])->group(function () {
-    Route::get('/dashboard', [MerchantController::class, 'dashboard'])->name('dashboard');
-    Route::get('/merchant/dashboard', [MerchantController::class, 'index'])->name('merchant.dashboard');
+    //Route::get('/dashboard', [MerchantController::class, 'dashboard'])->name('merchant.dashboard');
+    Route::get('/merchant/dashboard', [MerchantController::class, 'dashboard'])->name('merchant.dashboard');
     Route::get('/merchant/profile', [MerchantController::class, 'profile'])->name('merchant.profile');
     Route::get('/merchant/checkvoc', [MerchantController::class, 'checkvoc'])->name('merchant.checkvoc');
     Route::post('/approve/{id}', [MerchantController::class, 'approve'])->name('approve.formulir');
