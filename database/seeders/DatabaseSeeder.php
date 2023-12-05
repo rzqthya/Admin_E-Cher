@@ -17,9 +17,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             KotaSeeder::class,
-            // MerchantSeeder::class,
-            // VoucherSeeder::class,
-            WilayahSeeder::class
+            MerchantSeeder::class,
+                // VoucherSeeder::class,
+            WilayahSeeder::class,
+            UsersTableSeeder::class
             // Add more seeder classes here
         ]);
     }
