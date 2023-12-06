@@ -2,10 +2,18 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+    {{-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-text mx-3"><img class="rounded mr-1 mt-2"
-                src="{{ Vite::asset('resources/images/E-Cher.png') }}" width="80" height="70" alt="image"></div>
-    </a>
+                src="{{ Vite::asset('resources/images/E-Cher.png') }}" width="180" height="50" alt="image"></div>
+    </a> --}}
+    <div class="sidebar-header">
+        <div class="logo d-flex align-items-center justify-content-center">
+            <a href="{{ route('merchant.dashboard') }}"><img class="rounded mr-1 mt-2"
+                    src="{{ Vite::asset('resources/images/E-Cher.png') }}" width="150" height="90" alt="image">
+            </a>
+        </div>
+    </div>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">

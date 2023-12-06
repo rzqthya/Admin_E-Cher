@@ -2,8 +2,7 @@
     <div class="sidebar-header">
         <div class="logo">
             <a href="{{ route('merchant.dashboard') }}"><img class="rounded mr-1"
-                    src="{{ Vite::asset('resources/images/Logo.png') }}" width="180" height="50"
-                    alt="image">
+                    src="{{ Vite::asset('resources/images/E-Cher.png') }}" width="180" height="50" alt="image">
             </a>
         </div>
     </div>
@@ -21,8 +20,7 @@
                             <span>Klaim Voucher</span></a>
                     </li>
                     <li>
-                        <a href="{{ route('merchant.pakaivoc') }}" aria-expanded="true"><i
-                                class="fa fa-check"></i>
+                        <a href="{{ route('merchant.pakaivoc') }}" aria-expanded="true"><i class="fa fa-check"></i>
                             <span>Voucher Terklaim</span></a>
                     </li>
                 </ul>
