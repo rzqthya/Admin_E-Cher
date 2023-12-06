@@ -3,7 +3,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3"><img class="rounded mr-1" src="{{ Vite::asset('resources/images/Logo.png') }}"
+        <div class="sidebar-brand-text mx-3"><img class="rounded mr-1" src="{{ Vite::asset('resources/images/E-Cher.png') }}"
                 width="180" height="50" alt="image"></div>
     </a>
 
@@ -67,7 +67,7 @@
         </a>
         <div id="usersdropdown" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-            
+
 
                 {{-- <a class="collapse-item" href="{{ route('adminjr.voc.gagal') }}">Voucher Gagal Klaim</a> --}}
 
