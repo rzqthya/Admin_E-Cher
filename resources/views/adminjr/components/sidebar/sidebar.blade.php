@@ -2,10 +2,18 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3"><img class="rounded mr-1" src="{{ Vite::asset('resources/images/Logo.png') }}"
-                width="180" height="50" alt="image"></div>
-    </a>
+    {{-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-text mx-3"><img class="rounded mr-1 mt-2"
+                src="{{ Vite::asset('resources/images/E-Cher.png') }}" width="180" height="50" alt="image"></div>
+    </a> --}}
+    <div class="sidebar-header">
+        <div class="logo d-flex align-items-center justify-content-center">
+            <a href="{{ route('merchant.dashboard') }}"><img class="rounded mr-1 mt-2"
+                    src="{{ Vite::asset('resources/images/E-Cher.png') }}" width="150" height="90" alt="image">
+            </a>
+        </div>
+    </div>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
@@ -67,7 +75,7 @@
         </a>
         <div id="usersdropdown" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-            
+
 
                 {{-- <a class="collapse-item" href="{{ route('adminjr.voc.gagal') }}">Voucher Gagal Klaim</a> --}}
 

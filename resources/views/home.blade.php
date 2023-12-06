@@ -47,17 +47,22 @@
                             <label for="email">Email address</label>
                             <input type="email" name="email" id="email">
                             <i class="ti-email"></i>
-                            <div class="text-danger"></div>
+                            @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-gp">
                             <label for="password">Password</label>
                             <input type="password" name="password" id="password">
                             <i class="ti-lock"></i>
-                            <div class="text-danger"></div>
+                            @error('password')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="submit-btn-area">
-                            <button id="form_submit" name="submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
+                            <button id="form_submit" name="submit" type="submit">Submit <i
+                                    class="ti-arrow-right"></i></button>
                         </div>
                     </div>
                 </form>
