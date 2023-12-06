@@ -3,8 +3,8 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3"><img class="rounded mr-1" src="{{ Vite::asset('resources/images/E-Cher.png') }}"
-                width="180" height="50" alt="image"></div>
+        <div class="sidebar-brand-text mx-3"><img class="rounded mr-1 mt-2"
+                src="{{ Vite::asset('resources/images/E-Cher.png') }}" width="80" height="70" alt="image"></div>
     </a>
 
     <!-- Divider -->
