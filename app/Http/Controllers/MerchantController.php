@@ -101,4 +101,11 @@ class MerchantController extends Controller
         // dd(auth()->user()->id);
         return view('merchant.profil', compact('merchants', 'name', 'merchant'));
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        // Redirect ke halaman home
+        return redirect()->route('home');
+    }
 }

@@ -14,6 +14,12 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ route('merchant.profile') }}">Profil</a>
                 </div>
+                <h4 class="user-name dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-down"></i></h4>
+                logout
+                <form id="merchant-logout-form" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item">Logout</button>
+                </form>
             </div>
         </div>
     </div>
