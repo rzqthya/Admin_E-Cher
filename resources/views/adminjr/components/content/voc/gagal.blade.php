@@ -1,5 +1,8 @@
-<div class="container-fluid">
+@extends('adminjr.layouts.app')
 
+@section('title', 'Superadmin - Voucher Belum Terklaim')
+
+@section('content')
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Voucher Gagal Terklaim</h1>
     <p class="mb-4">Berikut adalah daftar wajib pajak yang gagal mengklaim voucher.</p>
@@ -99,4 +102,4 @@
         </div>
     </div>
 
-</div>
+@endsection

@@ -1,5 +1,8 @@
-<div class="container-fluid">
+@extends('adminjr.layouts.app')
 
+@section('title', 'Superadmin - Voucher Berhasil Terklaim')
+
+@section('content')
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Check Klaim Voucher</h1>
     <p class="mb-4">Berikut adalah daftar wajib pajak yang telah mengklaim voucher. Check data wajib
@@ -49,4 +52,4 @@
 
         </div>
     </div>
-</div>
+@endsection

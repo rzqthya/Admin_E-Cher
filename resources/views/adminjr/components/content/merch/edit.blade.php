@@ -1,5 +1,8 @@
-<div class="container-fluid">
+@extends('adminjr.layouts.app')
 
+@section('title', 'Superadmin - Edit Merchant')
+
+@section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Edit Merchant</h1>
@@ -53,14 +56,8 @@
         </div>
     </div>
 
-
     <!-- Content Row -->
-
     <div class="row">
-
-
     </div>
 
-
-
-</div>
+@endsection

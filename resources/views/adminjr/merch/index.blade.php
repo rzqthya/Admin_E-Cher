@@ -1,121 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('adminjr.layouts.app')
 
-<head>
+@section('title', 'Superadmin - Daftar Merchant')
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+@section('content')
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Daftar Merchant</h1>
+    <p class="mb-4">Berikut adalah daftar merchant yang tersebar di seluruh Jawa Timur. Klik <a href="{{ route('admin.merch.create') }}">disini</a> untuk menambahkan merhant baru.</p>
 
-    <title>Superadmin - Daftar Merchant</title>
-
-    <!-- Custom fonts for this template -->
-    <link href="{{ asset('assets/admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('assets/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="{{ asset('assets/admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-
-</head>
-
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        @include('adminjr.components.sidebar.sidebar')
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                @include('adminjr.components.navbar.navbar')
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-
-                @include('adminjr.components.content.merch.index')
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            @include('adminjr.components.footer.footer')
-            <!-- End of Footer -->
-
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Daftar Merchant</h6>
         </div>
-        <!-- End of Content Wrapper -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nama Merchant</th>
+                            <th>Kategori</th>
+                            <th>Kota</th>
+                            <th>Alamat</th>
+                            <th>Tanggal terdaftar</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
 
-    </div>
-    <!-- End of Page Wrapper -->
+                    @foreach ($merchants as $merchant)
+                    <tbody>
+                        <tr>
+                            <td>{{ $merchant->merchant }}</td>
+                            <td>{{ $merchant->kategori }}</td>
+                            <td>{{ $merchant->kota ? $merchant->kota->kota : 'N/A' }}</td>
+                            <td>{{ $merchant->alamat }}</td>
+                            <td>{{ $merchant->created_at->format('Y-m-d') }}</td>
+                            <td>
+                                {{-- detail --}}
+                                <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal{{ $merchant->id }}"><i class="fas fa-solid fa-magnifying-glass"></i></a>
+                                <span>
+                                    {{-- Edit --}}
+                                    <a href="{{ route('admin.merch.edit', ['id' => $merchant->id]) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                </span>
+                                <span>
+                                    <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter{{ $merchant->id }}"><i class="fas fa-trash-alt"></i></a>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    @endforeach
+                </table>
+            </div>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
 
-    <!-- Logout Form Modal -->
-    <form method="POST" action="{{ route('logout') }}" id="logoutForm">
-        @csrf
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Logout</button>
+            <div class="modal fade" id="exampleModalCenter{{ $merchant->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus
+                                Merchant</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah Anda yakin ingin menghapus merchant ini?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <form action="{{ route('admin.merch.delete', ['id' => $merchant->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            @foreach ($merchants as $merchant)
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="myModal{{ $merchant->id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Data Merchant</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Kolom pertama -->
+                                    <div class="mb-3">
+                                        <strong>Nama Merchant:</strong>
+                                        <p>{{ $merchant->merchant }}</p>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <strong>Kategori:</strong>
+                                        <p>{{ $merchant->kategori }}</p>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <strong>Nama Kota Terdaftar:</strong>
+                                        <p>{{ $merchant->kota ? $merchant->kota->kota : 'N/A' }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <!-- Kolom kedua -->
+                                    <div class="mb-3">
+                                        <strong>Alamat Merchant:</strong>
+                                        <p>{{ $merchant->alamat }}</p>
+                                    </div>
+
+                                    <div class="mb-6">
+                                        <div class="mb-3">
+                                            <strong>Email:</strong>
+                                            <p>{{ $merchant->user->email }}</p>
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                            <strong>Tanggal Terdaftar:</strong>
+                                            <p>{{ $merchant->created_at->format('Y-m-d') }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
-    </form>
+    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('assets/admin/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script src="{{ asset('assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Sweet Alert -->
-    <link href="{{ asset('/dist/css/sweetalert.css') }}" rel="stylesheet">
-    <!-- Sweet Alert -->
-    <script src="{{ asset('/dist/js/sweetalert.min.js') }}"></script>
-    <!--Icons-->
-    <script src="https://kit.fontawesome.com/eacd2b1685.js" crossorigin="anonymous"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('assets/admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('assets/admin/js/sb-admin-2.min.js') }}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{ asset('assets/admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('assets/admin/js/demo/datatables-demo.js') }} "></script>
-
-</body>
-
-</html>
+@endsection

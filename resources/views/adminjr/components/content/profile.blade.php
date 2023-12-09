@@ -1,5 +1,8 @@
-<div class="container-fluid">
+@extends('adminjr.layouts.app')
 
+@section('title', 'Admin JR - Dashboard')
+
+@section('Admin JR - Profile')
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Profil Admin</h1>
     <div class="card shadow mb-4">
@@ -28,5 +31,4 @@
         </div>
     </div>
 
-
-</div>
+@endsection

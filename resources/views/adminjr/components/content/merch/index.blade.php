@@ -1,4 +1,8 @@
-<div class="container-fluid">
+@extends('adminjr.layouts.app')
+
+@section('title', 'Superadmin - Daftar Merchant')
+
+@section('content')
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Daftar Merchant</h1>
     <p class="mb-4">Berikut adalah daftar merchant yang tersebar di seluruh Jawa Timur. Klik <a href="{{ route('admin.merch.create') }}">disini</a> untuk menambahkan merhant baru.</p>
@@ -39,10 +43,7 @@
                                 </span>
                                 <span>
                                     <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter{{ $merchant->id }}"><i class="fas fa-trash-alt"></i></a>
-
                                 </span>
-
-
                             </td>
                         </tr>
                     </tbody>
@@ -127,8 +128,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -136,3 +135,5 @@
             </div>
         </div>
     </div>
+
+@endsection

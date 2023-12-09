@@ -1,112 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('adminjr.layouts.app')
 
-<head>
+@section('title', 'Superadmin - Voucher Belum Terklaim')
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+@section('content')
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Voucher Gagal Terklaim</h1>
+    <p class="mb-4">Berikut adalah daftar wajib pajak yang gagal mengklaim voucher.</p>
 
-    <title>Superadmin - Voucher Gagal Terklaim</title>
-
-    <!-- Custom fonts for this template -->
-    <link href="{{ asset('assets/admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('assets/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="{{ asset('assets/admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-
-</head>
-
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        @include('adminjr.components.')
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                @include('adminjr.components.navbar.navbar')
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                @include('adminjr.components.content.voc.gagal')
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            @include('adminjr.components.footer.footer')
-            <!-- End of Footer -->
-
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Voucher Gagal Terklaim</h6>
         </div>
-        <!-- End of Content Wrapper -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nama Pemilik</th>
+                            <th>Nopol Kendaraan</th>
+                            <th>Nama Merchant</th>
+                            <th>Alamat Merchant</th>
+                            <th>Tanggal/Waktu Klaim</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Chatime</td>
+                            <td>Minuman</td>
+                            <td>Surabaya</td>
+                            <td>Tunjungan Plaza Surabaya Lt. 2</td>
+                            <td>21/08/2023</td>
+                            <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target=".bd-example-modal-lg">Detail</button></td>
+                        </tr>
 
-    </div>
-    <!-- End of Page Wrapper -->
+                    </tbody>
+                </table>
+            </div>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Form Modal -->
-    <form method="POST" action="{{ route('logout') }}" id="logoutForm">
-        @csrf
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Logout</button>
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Data Merchant</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="example-text-input" class="col-form-label">Nama
+                                        Merchant</label>
+                                    <input class="form-control mb-4" type="text" placeholder="Default input"
+                                        disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label">Bidang Usaha</label>
+                                    <select class="custom-select" disabled>
+                                        <option selected="selected">Makanan</option>
+                                        <option value="1">Minuman</option>
+                                        <option value="2">Transportasi</option>
+                                        <option value="3">Penginapan</option>
+                                        <option value="4">Salon dan Kecantikan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label">Kota/Kabupaten</label>
+                                    <select class="custom-select" disabled>
+                                        <option selected="selected">Surabaya</option>
+                                        <option value="1">Probolinggo</option>
+                                        <option value="2">Sidoarjo</option>
+                                        <option value="3">Gresik</option>
+                                        <option value="4">Bangkalan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-text-input" class="col-form-label">Alamat</label>
+                                    <input class="form-control mb-4" type="text" placeholder="Jl. Mawar 123"
+                                        disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" placeholder="chatime@gmail.com" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1"
+                                        placeholder="Password" disabled>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
-    </form>
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('assets/admin/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <!--Icons-->
-    <script src="https://kit.fontawesome.com/eacd2b1685.js" crossorigin="anonymous"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('assets/admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('assets/admin/js/sb-admin-2.min.js') }}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{ asset('assets/admin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('assets/admin/js/demo/datatables-demo.js') }} "></script>
-
-</body>
-
-</html>
+    </div>
+@endsection

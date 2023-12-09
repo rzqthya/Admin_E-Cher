@@ -1,13 +1,14 @@
-<div class="container-fluid">
+@extends('adminjr.layouts.app')
 
+@section('title', 'Superadmin - Tambah Voucher')
+
+@section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Tambah Voucher</h1>
-
     </div>
 
     <!-- Content Row -->
-
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Form Tambah Merchant Baru</h6>
@@ -47,4 +48,4 @@
             </form>
         </div>
     </div>
-</div>
+@endsection

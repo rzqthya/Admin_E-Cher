@@ -1,5 +1,8 @@
-<div class="container-fluid">
+@extends('adminjr.layouts.app')
 
+@section('title', 'Superadmin - Daftar Customer')
+
+@section('content')
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Daftar Customer</h1>
     <p class="mb-4">Berikut adalah daftar users yang tersebar di seluruh Jawa Timur.</p>
@@ -140,4 +143,4 @@
 
     </div>
 
-</div>
+@endsection

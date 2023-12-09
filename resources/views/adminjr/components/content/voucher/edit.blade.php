@@ -1,5 +1,8 @@
-<div class="container-fluid">
+@extends('adminjr.layouts.app')
 
+@section('title', 'Superadmin - Edit Voucher')
+
+@section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Edit Voucher</h1>
@@ -7,7 +10,6 @@
     </div>
 
     <!-- Content Row -->
-
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Edit Data Voucher</h6>
@@ -18,18 +20,18 @@
                 @method('PUT')
                 <div class="form-group">
                     <label for="example-text-input" class="col-form-label">Nama Voucher</label>
-                    <input class="form-control mb-4" type="text" id="voucher"
-                        name="voucher" value="{{ $vouchers->voucher }}">
+                    <input class="form-control mb-4" type="text" id="voucher" name="voucher"
+                        value="{{ $vouchers->voucher }}">
                 </div>
                 <div class="form-group">
                     <label class="col-form-label">Deskripsi Voucher</label>
-                    <input class="form-control mb-4" type="text" id="deskripsi"
-                        name="deskripsi" value="{{ $vouchers->deskripsi }}">
+                    <input class="form-control mb-4" type="text" id="deskripsi" name="deskripsi"
+                        value="{{ $vouchers->deskripsi }}">
                 </div>
                 <div class="form-group">
                     <label class="col-form-label">Masa Berlaku</label>
-                    <input class="form-control mb-4" type="datetime-local" id="masaBerlaku"
-                        name="masaBerlaku" value="{{ $vouchers->masaBerlaku }}">
+                    <input class="form-control mb-4" type="datetime-local" id="masaBerlaku" name="masaBerlaku"
+                        value="{{ $vouchers->masaBerlaku }}">
                 </div>
                 <div class="form-group">
                     <label class="col-form-label">Merchant</label>
@@ -46,15 +48,8 @@
             </form>
         </div>
     </div>
-
-
+    
     <!-- Content Row -->
-
     <div class="row">
-
-
     </div>
-
-
-
-</div>
+@endsection

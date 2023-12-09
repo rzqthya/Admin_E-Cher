@@ -94,7 +94,5 @@
     </div>
 
     <!-- Sidebar Message -->
-
-
 </ul>
 <!-- End of Sidebar -->
