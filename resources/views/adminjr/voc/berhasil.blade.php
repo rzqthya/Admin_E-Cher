@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin JR - Voucher Berhasil Terklaim</title>
+    <title>Superadmin - Voucher Berhasil Terklaim</title>
 
     <!-- Custom fonts for this template -->
     <link href="{{ asset('assets/admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">

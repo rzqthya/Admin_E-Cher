@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin JR - Check Klaim Voucher</title>
+    <title>Superadmin - Check Klaim Voucher</title>
 
     <!-- Custom fonts for this template -->
     <link href="{{ asset('assets/admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
