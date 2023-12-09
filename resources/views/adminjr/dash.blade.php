@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-@extends('adminjr.components.app')
+@extends('adminjr.layouts.app')
 
 @section('content')
-    <div id="content-wrapper" class="d-flex flex-column">
-        <!-- Begin Page Content -->
-        {{-- <div class="container-fluid"> --}}
+    <div class="container-fluid">
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -168,5 +164,5 @@
 
 
     </div>
-    <!-- /.container-fluid -->
 @endsection
+<!-- /.container-fluid -->

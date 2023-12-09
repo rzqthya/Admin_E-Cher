@@ -1,113 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('adminjr.layouts.app')
 
-<head>
+@section('content')
+    <div class="container-fluid">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Superadmin - Edit Voucher</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('assets/admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="{{ asset('assets/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
-</head>
-
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        @include('adminjr.components.sidebar.sidebar')
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                @include('adminjr.components.navbar.navbar')
-                <!-- End of Topbar -->
-
-
-                <!-- Begin Page Content -->
-                @include('adminjr.components.content.voucher.edit')
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            @include('adminjr.components.footer.footer')
-            <!-- End of Footer -->
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Edit Voucher</h1>
 
         </div>
-        <!-- End of Content Wrapper -->
+
+        <!-- Content Row -->
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Edit Data Voucher</h6>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('voucher.update', ['id' => $vouchers->id]) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <label for="example-text-input" class="col-form-label">Nama Voucher</label>
+                        <input class="form-control mb-4" type="text" id="voucher" name="voucher"
+                            value="{{ $vouchers->voucher }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Deskripsi Voucher</label>
+                        <input class="form-control mb-4" type="text" id="deskripsi" name="deskripsi"
+                            value="{{ $vouchers->deskripsi }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Masa Berlaku</label>
+                        <input class="form-control mb-4" type="datetime-local" id="masaBerlaku" name="masaBerlaku"
+                            value="{{ $vouchers->masaBerlaku }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Merchant</label>
+                        <select class="form-control" id="merchant_id" name="merchant_id">
+                            @foreach ($merchants as $merchant)
+                                <option value="{{ $merchant->id }}"
+                                    {{ $vouchers->merchant_id == $merchant->id ? 'selected' : '' }}>
+                                    {{ $merchant->merchant }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Update</button>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- Content Row -->
+
+        <div class="row">
+
+        </div>
 
     </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Form Modal -->
-    <form method="POST" action="{{ route('logout') }}" id="logoutForm">
-        @csrf
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Logout</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('assets/admin/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!--Icons-->
-    <script src="https://kit.fontawesome.com/eacd2b1685.js" crossorigin="anonymous"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('assets/admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('assets/admin/js/sb-admin-2.min.js') }}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{ asset('assets/admin/vendor/chart.js/Chart.min.js') }}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('assets/admin/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/demo/chart-pie-demo.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/demo/chart-bar-demo.js') }}"></script>
-
-</body>
-
-</html>
+@endsection

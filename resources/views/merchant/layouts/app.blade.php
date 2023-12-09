@@ -4,7 +4,7 @@
 @include('merchant.layouts.head')
 
 <body>
-    <!-- @include('merchant.layouts.preloader') -->
+    {{-- <!-- @include('merchant.layouts.preloader') --> --}}
     <div class="page-container">
         <!-- Include the sidebar -->
         @include('merchant.layouts.sidebar')
@@ -15,7 +15,6 @@
             <!-- Include the page title -->
             @include('merchant.layouts.page-title')
             <div class="main-content-inner">
-                <!-- Include the main content for checkvoucher -->
                 @yield('content')
             </div>
         </div>

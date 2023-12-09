@@ -76,14 +76,12 @@
         <div id="usersdropdown" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
-
+                <a class="collapse-item" href="{{ route('adminjr.user.index') }}"> Daftar User</a>
                 {{-- <a class="collapse-item" href="{{ route('adminjr.voc.gagal') }}">Voucher Gagal Klaim</a> --}}
 
             </div>
         </div>
     </li>
-
-
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

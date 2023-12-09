@@ -1,91 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('adminjr.layouts.app')
 
-<head>
+@section('content')
+    <div class="container-fluid">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Superadmin - Tambah Merchant</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="{{ asset('assets/admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="{{ asset('assets/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
-
-</head>
-
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        @include('adminjr.components.sidebar.sidebar')
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                @include('adminjr.components.navbar.navbar')
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                @include('adminjr.components.content.merch.create')
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            @include('adminjr.components.footer.footer')
-            <!-- End of Footer -->
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Tambah Merchant</h1>
 
         </div>
-        <!-- End of Content Wrapper -->
+
+        <!-- Content Row -->
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Form Tambah Merchant Baru</h6>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('admin.merch.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="example-text-input" class="col-form-label">Nama Merchant</label>
+                        <input class="form-control mb-4" id="merchant" name="merchant" type="text"
+                            placeholder="Nama Merchant">
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+
+                            <div class="form-group">
+                                <label for="kota_id" class="col-form-label">Kota/Kabupaten</label>
+                                <select class="custom-select" id="kota_id" name="kota_id">
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city->id }}">{{ $city->kota }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Bidang Usaha</label>
+                                <select class="custom-select" id="kategori" name="kategori">
+                                    <option selected="selected">Makanan</option>
+                                    <option value="Minuman">Minuman</option>
+                                    <option value="Transportasi">Transportasi</option>
+                                    <option value="Penginapan">Penginapan</option>
+                                    <option value="Beauty">Salon dan Kecantikan</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="example-text-input" class="col-form-label">Alamat</label>
+                                <input class="form-control mb-4" type="text" id="alamat" name="alamat"
+                                    placeholder="Alamat Merchant">
+                            </div>
+                            <div class="form-group">
+                                <label for="example-text-input" class="col-form-label">No Telp</label>
+                                <input class="form-control mb-4" type="text" id="noTelp" name="noTelp"
+                                    placeholder="Nomor Telepon">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your
+                            email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- Content Row -->
+
+        <div class="row">
+
+
+        </div>
+
+
 
     </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('assets/admin/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-    <!--Icons-->
-    <script src="https://kit.fontawesome.com/eacd2b1685.js" crossorigin="anonymous"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('assets/admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('assets/admin/js/sb-admin-2.min.js') }}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{ asset('assets/admin/vendor/chart.js/Chart.min.js') }}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{ asset('assets/admin/js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/demo/chart-pie-demo.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/demo/chart-bar-demo.js') }}"></script>
-
-</body>
-
-</html>
+@endsection
