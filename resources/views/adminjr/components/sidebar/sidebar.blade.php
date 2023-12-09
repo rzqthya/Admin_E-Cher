@@ -9,7 +9,7 @@
     <div class="sidebar-header">
         <div class="logo d-flex align-items-center justify-content-center">
             <a href="{{ route('merchant.dashboard') }}"><img class="rounded mr-1 mt-2"
-                    src="{{ Vite::asset('resources/images/E-Cher.png') }}" width="150" height="90" alt="image">
+                    src="{{ Vite::asset('resources/images/E-Cher.png') }}" width="120" height="90" alt="image">
             </a>
         </div>
     </div>

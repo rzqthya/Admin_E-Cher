@@ -13,22 +13,18 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 
-class MerchantController extends Controller
-{
-    public function __construct()
-    {
+class MerchantController extends Controller {
+    public function __construct() {
         $this->middleware('auth');
     }
 
-    public function dashboard()
-    {
+    public function dashboard() {
         return view('merchant.dashboard');
     }
 
-    public function index()
-    {
+    public function index() {
 
-        if (Auth::guard('merchant')->check()) {
+        if(Auth::guard('merchant')->check()) {
             $user = Auth::guard('merchant')->user();
             $merchantId = $user->id;
 
@@ -51,8 +47,7 @@ class MerchantController extends Controller
         }
     }
 
-    public function checkvoc(Request $request)
-    {
+    public function checkvoc(Request $request) {
         $user = Auth::guard('merchant')->user();
         $name = $user->nama_merchant;
 
@@ -65,8 +60,7 @@ class MerchantController extends Controller
         return view('merchant.checkvoc', compact('formulirs', 'name', 'activePage'));
     }
 
-    public function pakaivoc()
-    {
+    public function pakaivoc() {
         $user = Auth::guard('merchant')->user();
         $name = $user->nama_merchant;
 
@@ -78,8 +72,7 @@ class MerchantController extends Controller
         return view('merchant.pakaivoc', compact('formulirs', 'name', 'activePage'));
     }
 
-    public function approve($id)
-    {
+    public function approve($id) {
         $user = Auth::guard('merchant')->user();
         $name = $user->nama_merchant;
         $formulir = Formulir::findOrFail($id);
@@ -92,8 +85,7 @@ class MerchantController extends Controller
         return redirect()->route('merchant.checkvoc', compact('name'));
     }
 
-    public function profile()
-    {
+    public function profile() {
         $merchants = Auth::guard('merchant')->user();
         $name = $merchants->nama_merchant;
         $id = auth()->user()->id;
@@ -102,8 +94,7 @@ class MerchantController extends Controller
         return view('merchant.profil', compact('merchants', 'name', 'merchant'));
     }
 
-    public function logout(Request $request)
-    {
+    public function logout(Request $request) {
         Auth::logout();
         // Redirect ke halaman home
         return redirect()->route('home');
