@@ -57,5 +57,5 @@ Route::middleware(['merchant'])->group(function () {
     Route::get('/merchant/checkvoc', [MerchantController::class, 'checkvoc'])->name('merchant.checkvoc');
     Route::post('/approve/{id}', [MerchantController::class, 'approve'])->name('approve.formulir');
     Route::get('/merchant/pakaivoc', [MerchantController::class, 'pakaivoc'])->name('merchant.pakaivoc');
-    Route::post('/logout', [MerchantController::class, 'logout'])->name('merchant.logout');
+    Route::post('/logout', [MerchantController::class, 'merchantLogout'])->name('merchant.logout');
 });
