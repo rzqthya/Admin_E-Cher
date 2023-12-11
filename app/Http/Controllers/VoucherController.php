@@ -101,14 +101,13 @@ class VoucherController extends Controller
         return redirect()->route('adminjr.voucher')->with('success', 'Data berhasil diperbarui');
     }
 
-
     public function destroy($id)
     {
 
         $voucher = Voucher::find($id);
         $voucher->delete();
 
-        // Redirect ke halaman index atau halaman lain yang diinginkan
-        return redirect()->route('adminjr.voucher');
+        return redirect()->route('adminjr.voucher.index');
     }
+
 }
