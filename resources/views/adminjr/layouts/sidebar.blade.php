@@ -55,11 +55,7 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-               
-                <a class="collapse-item" href="{{ route('voucher.index') }}">Daftar Voucher</a>
-                <a class="collapse-item" href="{{ route('adminjr.voc.berhasil') }}">Voucher Berhasil Klaim</a>
-        
-
+                <a class="collapse-item" href="{{ route('voucher.index') }}">Daftar Voucher</a>     
             </div>
         </div>
     </li>
@@ -71,9 +67,7 @@
         </a>
         <div id="usersdropdown" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-
-                <a class="collapse-item" href="{{ route('adminjr.user.index') }}"> Daftar User</a>
-                {{-- <a class="collapse-item" href="{{ route('adminjr.voc.gagal') }}">Voucher Gagal Klaim</a> --}}
+                <a class="collapse-item" href="{{ route('customer.index') }}"> Daftar Pelanggan</a>
 
             </div>
         </div>

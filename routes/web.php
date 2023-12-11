@@ -2,14 +2,14 @@
 
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MerchantController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-// use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -52,9 +52,7 @@ Route::middleware(['web'])->group(function () {
     Route::resource('voucher', VoucherController::class)->except(['show']);
 
     // route daftar customer
-    Route::get('/user/index', function () {
-        return view('adminjr/user/index');
-    })->name('adminjr.user.index');
+    Route::resource('customer', CustomerController::class)->except(['show']);
 });
 
 Route::middleware(['merchant'])->group(function () {
