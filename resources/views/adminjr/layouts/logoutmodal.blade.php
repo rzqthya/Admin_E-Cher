@@ -1,5 +1,5 @@
 <!-- Logout Form Modal -->
-<form method="POST" action="{{ route('logout') }}" id="logoutForm">
+<form method="POST" action="{{ route('admin.logout') }}" id="logoutForm">
     @csrf
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">

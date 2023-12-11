@@ -36,8 +36,8 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['web'])->group(function () {
     //rute dasboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-    Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
-    Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+
+    Route::post('/admin/logout', [AdminController::class, 'adminLogout'])->name('admin.logout');
 
     //rute manjemen merchant
     Route::get('/merch/daftar/index', [AdminController::class, 'index'])->name('admin.merch.index');
@@ -57,5 +57,5 @@ Route::middleware(['merchant'])->group(function () {
     Route::get('/merchant/checkvoc', [MerchantController::class, 'checkvoc'])->name('merchant.checkvoc');
     Route::post('/approve/{id}', [MerchantController::class, 'approve'])->name('approve.formulir');
     Route::get('/merchant/pakaivoc', [MerchantController::class, 'pakaivoc'])->name('merchant.pakaivoc');
-    Route::post('/logout', [MerchantController::class, 'logout'])->name('logout');
+    Route::post('/logout', [MerchantController::class, 'logout'])->name('merchant.logout');
 });

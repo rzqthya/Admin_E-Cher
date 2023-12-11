@@ -157,10 +157,10 @@ class AdminController extends Controller
         return redirect()->route('admin.merch.index')->with('success', 'Merchant has been deleted');
     }
 
-    public function logout()
+    public function adminLogout()
     {
         Auth::logout();
-        return redirect()->route('home')->with('success', 'Anda telah berhasil logout.');
+        return redirect('/');
     }
 }
 
