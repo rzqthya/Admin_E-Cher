@@ -13,7 +13,7 @@ class Wilayah extends Model
 
     public function formulir()
     {
-        return $this->belongsTo(Formulir::class, 'wilayah_id');
+        return $this->hasMany(Formulir::class, 'wilayah_id');
     }
 }
 

@@ -56,6 +56,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('voucher.index') }}">Daftar Voucher</a>     
+                <a class="collapse-item" href="{{ route('admin.voucher.klaim') }}">Voucher Terklaim</a>     
             </div>
         </div>
     </li>

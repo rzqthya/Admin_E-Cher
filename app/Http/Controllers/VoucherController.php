@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Formulir;
 use App\Models\Merchant;
 use App\Models\Voucher;
 use App\Models\User;
@@ -99,6 +100,17 @@ class VoucherController extends Controller
         // dd($voucher->save());
 
         return redirect()->route('adminjr.voucher')->with('success', 'Data berhasil diperbarui');
+    }
+
+    public function showKlaim()
+    {
+        $adminUser = auth()->user();
+        $adminName = $adminUser->nama;
+
+        $formulirs = Formulir::all();
+
+        return view('adminjr.voucher.klaim', compact('formulirs', 'adminName'));
+
     }
 
     public function destroy($id)

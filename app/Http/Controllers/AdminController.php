@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Formulir;
 use App\Models\Kota;
 use App\Models\Merchant;
-use App\Models\Wilayah;
 use App\Models\User;
 use App\Models\Voucher;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

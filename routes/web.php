@@ -43,20 +43,15 @@ Route::middleware(['web'])->group(function () {
     Route::get('/merch/daftar/index', [AdminController::class, 'index'])->name('admin.merch.index');
     Route::resource('admin', AdminController::class)->except(['show']);
 
-
-    Route::get('/voc/klaim', [AdminController::class, 'showVoucher'])->name('admin.voc.klaim');
-    Route::post('admin/terima/formulir/{id}', [AdminController::class, 'terimaFormulir'])->name('admin.terima.formulir');
-    Route::get('/voc/berhasil', [AdminController::class, 'vocberhasil'])->name('adminjr.voc.berhasil');
-
     //rute manajemen voucher
     Route::resource('voucher', VoucherController::class)->except(['show']);
+    Route::get('/voucher/klaim', [VoucherController::class, 'showKlaim'])->name('admin.voucher.klaim');
 
     // route daftar customer
     Route::resource('customer', CustomerController::class)->except(['show']);
 });
 
 Route::middleware(['merchant'])->group(function () {
-    //Route::get('/dashboard', [MerchantController::class, 'dashboard'])->name('merchant.dashboard');
     Route::get('/merchant/dashboard', [MerchantController::class, 'dashboard'])->name('merchant.dashboard');
     Route::get('/merchant/profile', [MerchantController::class, 'profile'])->name('merchant.profile');
     Route::get('/merchant/checkvoc', [MerchantController::class, 'checkvoc'])->name('merchant.checkvoc');

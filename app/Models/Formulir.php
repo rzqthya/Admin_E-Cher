@@ -17,7 +17,7 @@ class Formulir extends Model
 
     public function wilayah()
     {
-        return $this->hasOne(Wilayah::class, 'wilayah_id');
+        return $this->belongsTo(Wilayah::class, 'wilayah_id');
     }
 
     public function user()
