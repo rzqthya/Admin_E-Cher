@@ -30,10 +30,15 @@
                         <tr>
                             <td>{{ $formulir->voucher->voucher }}</td>
                             <td>{{ $formulir->wilayah->samsat }}</td>
-
-                           
-                           
-                           
+                            <td>{{ $formulir->user->email }}</td>
+                            <td>{{ $formulir->nama }}</td>
+                            <td>{{ $formulir->nopol }}</td>                   
+                            <td>{{ $formulir->image }}</td>
+                            <td>{{ $formulir->created_at }}</td>  
+                            <td>
+                            {{-- detail --}}
+                                <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal{{ $formulir->id }}"><i class="fas fa-solid fa-magnifying-glass"></i></a>
+                            </td>   
                         </tr>
                         @endforeach
                     </tbody>
