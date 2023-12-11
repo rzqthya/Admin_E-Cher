@@ -8,8 +8,7 @@
     </a> --}}
     <div class="sidebar-header">
         <div class="logo d-flex align-items-center justify-content-center">
-            <a href="{{ route('merchant.dashboard') }}"><img class="rounded mr-1 mt-2"
-                    src="{{ Vite::asset('resources/images/E-Cher.png') }}" width="120" height="90" alt="image">
+            <a href="{{ route('merchant.dashboard') }}"><img class="rounded mr-1 mt-2" src="{{ Vite::asset('resources/images/E-Cher.png') }}" width="120" height="90" alt="image">
             </a>
         </div>
     </div>
@@ -35,41 +34,38 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-solid fa-shop"></i>
             <span>Merchant</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
-                <a class="collapse-item" href="{{ route('admin.merch.index') }}">Daftar Merchant</a>
-                <a class="collapse-item" href="{{ route('admin.merch.create') }}">Tambah Merchant</a>
+                <a class="collapse-item" href="{{ route('admin.index') }}">Daftar Merchant</a>
+                <a class="collapse-item" href="{{ route('admin.create') }}">Tambah Merchant</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-ticket-alt"></i>
             <span>Voucher</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('adminjr.voucher') }}"> Daftar Voucher</a>
-                <a class="collapse-item" href="{{ route('admin.voc.klaim') }}">Check Klaim Voucher</a>
+               
+                <a class="collapse-item" href="{{ route('voucher.index') }}">Check Klaim Voucher</a>
                 <a class="collapse-item" href="{{ route('adminjr.voc.berhasil') }}">Voucher Berhasil Klaim</a>
-                {{-- <a class="collapse-item" href="{{ route('adminjr.voc.gagal') }}">Voucher Gagal Klaim</a> --}}
+        
 
             </div>
         </div>
     </li>
     {{-- Users --}}
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#usersdropdown"
-            aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#usersdropdown" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fa-solid fa-user"></i>
             <span>Users</span>
         </a>

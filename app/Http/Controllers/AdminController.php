@@ -6,8 +6,8 @@ use App\Models\Formulir;
 use App\Models\Kota;
 use App\Models\Merchant;
 use App\Models\Wilayah;
-use App\Models\Konfirmasi;
 use App\Models\User;
+use App\Models\Voucher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,41 +25,38 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return view('adminjr.dash');
+        $adminUser = auth()->user();
+        $adminName = $adminUser->nama;
+        //rekpitulasi 
+        $totalMerchant = Merchant::count();
+        $totalVougabung = Voucher::count();
+
+        return view('adminjr.dash', compact('adminName', 'totalMerchant', 'totalVougabung'));
     }
 
     public function index()
     {
-        $user = Auth::user();
-        $name = $user->name;
+        $adminUser = auth()->user();
+        $adminName = $adminUser->nama;
+
         $cities = Kota::all();
         $merchants = Merchant::all();
 
-        return view('adminjr.merch.index', compact('cities', 'merchants', 'name'));
+        return view('adminjr.merch.index', compact('cities', 'merchants', 'adminName'));
     }
+
+
     public function profile()
     {
-        $user = Auth::user();
-        $name = $user->name;
-        $id = auth()->id();
-        $users = DB::table('users')->where('id', $id)->get();
-        return view('adminjr.profile', compact('users', 'name'));
+        $adminUser = auth()->user();
+        $adminName = $adminUser->nama;
+
+        return view('adminjr.profile', compact('users', 'adminName'));
     }
 
-    public function admindash()
-    {
-
-        $totalMerchant = DB::table('merchant')->count();
-        $totalVoucher = DB::table('formulir')->count();
-        $voucherTerpakai = Formulir::where('status_voucher', 1)->where('status_klaim', 1)->count();
-        $voucherTValidasi = Formulir::where('status_klaim', 0)->count();
-
-        return view('adminjr.dash', compact('totalMerchant', 'totalVoucher', 'voucherTerpakai', 'voucherTValidasi'));
-    }
 
     public function create()
     {
-
         $cities = Kota::all();
         return view('adminjr.merch.create', compact('cities'));
     }
@@ -101,7 +98,6 @@ class AdminController extends Controller
 
         $merchant = new Merchant([
             'users_id' => $user->id,
-            'merchant' => $request->input('merchant'),
             'kategori' => $request->input('kategori'),
             'alamat' => $request->input('alamat'),
             'kota_id' => $request->input('kota_id'),
@@ -111,19 +107,16 @@ class AdminController extends Controller
         return redirect()->route('admin.merch.index');
     }
 
-    public function show()
-    {
-        return view('adminjr.profile');
-    }
 
     public function edit($id)
     {
-        $user = Auth::user();
-        $name = $user->name;
+        $adminUser = auth()->user();
+        $adminName = $adminUser->nama;
+
         $cities = Kota::all();
         $merchants = Merchant::find($id);
 
-        return view('adminjr.merch.edit', compact('cities', 'merchants', 'name'));
+        return view('adminjr.merch.edit', compact('cities', 'merchants', 'adminName'));
     }
 
 
@@ -131,15 +124,26 @@ class AdminController extends Controller
     {
 
         $merchant = Merchant::find($id);
-        $merchant->nama_merchant = $request->input('nama_merchant');
-        $merchant->kategori = $request->input('kategori');
-        $merchant->kota_id = $request->input('kota_id');
-        $merchant->alamat = $request->input('alamat');
-        $merchant->email = $request->input('email');
 
-        $merchant->save();
+        if ($merchant) {
+            // Update data merchant
+            $merchant->kategori = $request->input('kategori');
+            $merchant->kota_id = $request->input('kota_id');
+            $merchant->alamat = $request->input('alamat');
 
-        return redirect()->route('admin.merch.index')->with('success', 'Data merchant berhasil diperbarui');
+            // Update data pengguna terkait
+            if ($merchant->user) {
+                $merchant->user->nama = $request->input('merchant');
+                $merchant->user->email = $request->input('email');
+                $merchant->user->save();
+            }
+
+            $merchant->save();
+
+            return redirect()->route('admin.merch.index')->with('success', 'Data merchant berhasil diperbarui');
+        }
+
+        return redirect()->route('admin.merch.index')->with('error', 'Merchant tidak ditemukan');
     }
 
 

@@ -6,10 +6,6 @@ use App\Models\Merchant;
 use App\Models\Voucher;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -18,22 +14,25 @@ class VoucherController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
-        $name = $user->name;
-        $id = auth()->id();
-        $users = DB::table('users')->where('id', $id)->get();
+        $adminUser = auth()->user();
+        $adminName = $adminUser->nama;
+
         $vouchers = Voucher::all();
         $merchants = Merchant::all();
 
-        return view('adminjr.voucher.index', compact('vouchers', 'merchants', 'name', 'users'));
+        return view('adminjr.voucher.index', compact('vouchers', 'merchants', 'adminName'));
     }
-
 
     public function create()
     {
+        $adminUser = auth()->user();
+        $adminName = $adminUser->nama;
+
         $merchants = Merchant::all();
-        return view('adminjr.voucher.create', compact('merchants'));
+
+        return view('adminjr.voucher.create', compact('merchants', 'adminName'));
     }
+
 
 
     public function store(Request $request)
@@ -43,18 +42,18 @@ class VoucherController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
-            'nama_voucher' => 'required',
-            'deskripsi_voucher' => 'required',
-            'fotoVoucher' => 'required',
+            'voucher' => 'required',
+            'deskripsi' => 'required',
+            'masaBerlaku' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Sesuaikan dengan tipe file gambar yang diizinkan
             'merchant_id' => 'required|integer',
-
         ], $messages);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        if ($request->hasFile('fotoVoucher')) {
-            $file = $request->file('fotoVoucher');
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
             $originalFilename = $file->getClientOriginalName();
 
             $file->storeAs('public/voucher', $originalFilename);
@@ -63,7 +62,7 @@ class VoucherController extends Controller
         }
 
 
-        $voucher = new Voucher([
+        $vouchers = new Voucher([
             'voucher' => $request->input('voucher'),
             'deskripsi' => $request->input('deskripsi'),
             'masaBerlaku' => $request->input('masaBerlaku'),
@@ -71,19 +70,20 @@ class VoucherController extends Controller
             'merchant_id' => $request->input('merchant_id'),
         ]);
 
-        $voucher->save();
+        $vouchers->save();
 
         return redirect()->route('adminjr.voucher')->with('success', 'Voucher berhasil ditambahkan.');
     }
 
     public function edit($id)
     {
-        $user = Auth::user();
-        $name = $user->nama;
-        $users = DB::table('users')->where('id', $id)->get();
+        $adminUser = auth()->user();
+        $adminName = $adminUser->nama;
+
         $merchants = Merchant::all();
         $vouchers = Voucher::find($id);
-        return view('adminjr.voucher.edit', compact('merchants', 'vouchers', 'name'));
+
+        return view('adminjr.voucher.edit', compact('merchants', 'vouchers', 'adminName'));
     }
 
     public function update(Request $request, $id)
@@ -103,10 +103,11 @@ class VoucherController extends Controller
 
     public function destroy($id)
     {
-        $voucher = Voucher::findOrFail($id);
 
+        $voucher = Voucher::find($id);
         $voucher->delete();
-        // dump($voucher->delete());
-        return redirect()->route('adminjr.voucher')->with('success', 'Voucher berhasil dihapus');
+
+        // Redirect ke halaman index atau halaman lain yang diinginkan
+        return redirect()->route('adminjr.voucher');
     }
 }

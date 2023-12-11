@@ -16,7 +16,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Form Tambah Merchant Baru</h6>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.merch.store') }}" method="POST">
+                <form action="{{ route('admin.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="example-text-input" class="col-form-label">Nama Merchant</label>

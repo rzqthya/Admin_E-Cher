@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Merchant extends Model
 {
-    protected $fillable = ['users_id', 'kota_id', 'merchant', 'kategori', 'alamat'];
+    protected $fillable = ['users_id', 'kota_id', 'kategori', 'alamat'];
 
     protected $table = 'merchants';
 

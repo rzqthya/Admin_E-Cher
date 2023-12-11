@@ -39,32 +39,25 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['web'])->group(function () {
     //rute dasboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-    // Route::get('/admin', [AdminController::class, 'admindash'])->name('dashboard');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
     //rute manjemen merchant
     Route::get('/merch/daftar/index', [AdminController::class, 'index'])->name('admin.merch.index');
-    Route::get('admin/merch/edit/{id}', [AdminController::class, 'edit'])->name('admin.merch.edit');
-    Route::put('admin/merch/edit/{id}', [AdminController::class, 'update'])->name('admin.merch.update');
-    Route::get('admin/merch/create', [AdminController::class, 'create'])->name('admin.merch.create');
-    Route::post('admin/merch/create', [AdminController::class, 'store'])->name('admin.merch.store');
-    Route::delete('admin/merch/delete/{id}', [AdminController::class, 'destroy'])->name('admin.merch.delete');
+    Route::resource('admin', AdminController::class)->except(['show']);
 
-    //rute manajemen voucher
+
     Route::get('/voc/klaim', [AdminController::class, 'showVoucher'])->name('admin.voc.klaim');
     Route::post('admin/terima/formulir/{id}', [AdminController::class, 'terimaFormulir'])->name('admin.terima.formulir');
     Route::get('/voc/berhasil', [AdminController::class, 'vocberhasil'])->name('adminjr.voc.berhasil');
-    Route::get('/voucher/index', [VoucherController::class, 'index'])->name('adminjr.voucher');
-    Route::get('/voucher/create', [VoucherController::class, 'create'])->name('voucher.create');
-    Route::post('/voucher/create', [VoucherController::class, 'store'])->name('voucher.store');
-    Route::get('voucher/edit/{id}', [VoucherController::class, 'edit'])->name('voucher.edit');
-    Route::put('voucher/edit/{id}', [VoucherController::class, 'update'])->name('voucher.update');
-    Route::delete('/voucher/delete/{id}', [VoucherController::class, 'destroy'])->name('voucher.delete');
+
+    //rute manajemen voucher
+    Route::resource('voucher', VoucherController::class)->except(['show']);
 
     // route daftar customer
     Route::get('/user/index', function () {
-        return view('adminjr/user/index'); })->name('adminjr.user.index');
+        return view('adminjr/user/index');
+    })->name('adminjr.user.index');
 });
 
 Route::middleware(['merchant'])->group(function () {
