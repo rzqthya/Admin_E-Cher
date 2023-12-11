@@ -2,8 +2,6 @@
 
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\MerchantAuthController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VoucherController;
@@ -33,7 +31,6 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::post('/login', [HomeController::class, 'login']);
 });
-
 
 //middleware admin
 Route::middleware(['web'])->group(function () {

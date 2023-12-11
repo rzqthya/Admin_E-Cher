@@ -16,7 +16,6 @@ class Voucher extends Model
     protected $dates = [
         'created_at',
         'updated_at',
-        'masaBerlaku'
     ];
 
     public function merchant()

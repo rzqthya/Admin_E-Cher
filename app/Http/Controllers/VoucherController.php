@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Merchant;
 use App\Models\Voucher;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -28,12 +29,11 @@ class VoucherController extends Controller
         $adminUser = auth()->user();
         $adminName = $adminUser->nama;
 
+        $users = User::where('role', 'merchant')->get();
         $merchants = Merchant::all();
 
-        return view('adminjr.voucher.create', compact('merchants', 'adminName'));
+        return view('adminjr.voucher.create', compact('merchants','users', 'adminName'));
     }
-
-
 
     public function store(Request $request)
     {
@@ -45,8 +45,7 @@ class VoucherController extends Controller
             'voucher' => 'required',
             'deskripsi' => 'required',
             'masaBerlaku' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Sesuaikan dengan tipe file gambar yang diizinkan
-            'merchant_id' => 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
         ], $messages);
 
         if ($validator->fails()) {
@@ -61,18 +60,18 @@ class VoucherController extends Controller
             $originalFilename = null;
         }
 
-
         $vouchers = new Voucher([
             'voucher' => $request->input('voucher'),
             'deskripsi' => $request->input('deskripsi'),
             'masaBerlaku' => $request->input('masaBerlaku'),
             'image' => 'voucher/' . $originalFilename,
             'merchant_id' => $request->input('merchant_id'),
+            'created_at' => now(),
         ]);
 
         $vouchers->save();
 
-        return redirect()->route('adminjr.voucher')->with('success', 'Voucher berhasil ditambahkan.');
+        return redirect()->route('adminjr.voucher.index')->with('success', 'Voucher berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -80,21 +79,23 @@ class VoucherController extends Controller
         $adminUser = auth()->user();
         $adminName = $adminUser->nama;
 
+        $users = User::all();
         $merchants = Merchant::all();
         $vouchers = Voucher::find($id);
 
-        return view('adminjr.voucher.edit', compact('merchants', 'vouchers', 'adminName'));
+        return view('adminjr.voucher.edit', compact('users','merchants', 'vouchers', 'adminName'));
     }
 
     public function update(Request $request, $id)
     {
-        $voucher = Voucher::find($id);
-        $voucher->voucher = $request->input('voucher');
-        $voucher->deskripsi = $request->input('deskripsi');
-        $voucher->masaBerlaku = $request->input('masaBerlaku');
-        $voucher->merchant_id = $request->input('merchant_id');
+        $vouchers = Voucher::find($id);
 
-        $voucher->save();
+        $vouchers->voucher = $request->input('voucher');
+        $vouchers->deskripsi = $request->input('deskripsi');
+        $vouchers->masaBerlaku = $request->input('masaBerlaku');
+        $vouchers->merchant_id = $request->input('merchant_id');
+
+        $vouchers->save();
         // dd($voucher->save());
 
         return redirect()->route('adminjr.voucher')->with('success', 'Data berhasil diperbarui');

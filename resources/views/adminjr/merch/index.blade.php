@@ -43,11 +43,9 @@
                                     <a href="{{ route('admin.edit', ['admin' => $merchant->id]) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                 </span>
                                 <span>
+                                    {{-- Hapus --}}
                                     <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter{{ $merchant->id }}"><i class="fas fa-trash-alt"></i></a>
-
                                 </span>
-
-
                             </td>
                         </tr>
                         @endif

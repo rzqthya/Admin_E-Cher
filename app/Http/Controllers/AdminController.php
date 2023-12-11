@@ -31,7 +31,7 @@ class AdminController extends Controller
         $totalMerchant = Merchant::count();
         $totalVougabung = Voucher::count();
 
-        return view('adminjr.dash', compact('adminName', 'totalMerchant', 'totalVougabung'));
+        return view('adminjr.dash', compact('totalMerchant', 'totalVougabung', 'adminName'));
     }
 
     public function index()
@@ -51,7 +51,7 @@ class AdminController extends Controller
         $adminUser = auth()->user();
         $adminName = $adminUser->nama;
 
-        return view('adminjr.profile', compact('users', 'adminName'));
+        return view('adminjr.profile', compact('adminName'));
     }
 
 
@@ -149,75 +149,61 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
-        // Get the merchant data by its ID
         $merchant = Merchant::find($id);
 
-        // If the merchant is not found, return a 404 Not Found response
         if (!$merchant) {
             return redirect()->route('admin.merch.index')->with('error', 'Merchant not found');
         }
 
-        // Delete the merchant
         $merchant->delete();
 
-        // Return a success response or redirect
         return redirect()->route('admin.merch.index')->with('success', 'Merchant has been deleted');
     }
-    public function showVoucher()
-    {
 
-        $user = Auth::user();
-        $name = $user->name;
-        $formulirs = Formulir::all();
-        $wilayahs = Wilayah::all();
-        $merchants = Merchant::all();
-        // $konfirmasis = Konfirmasi::all();
-
-        return view('adminjr.voc.klaim', compact('formulirs', 'wilayahs', 'merchants', 'name'));
-    }
-
-    public function terimaFormulir($id)
-    {
-        $formulir = Formulir::findOrFail($id);
-        // Ubah status_voucher menjadi true (1)
-        $formulir->status_voucher = true;
-
-        $formulir->save();
-        // dump($formulir->save());
-        return redirect()->route('admin.voc.klaim');
-    }
-    public function vocberhasil()
-    {
-
-        // Filter data formulir berdasarkan status klaim
-
-
-        $user = Auth::user();
-        $name = $user->name;
-        $formulirs = Formulir::all();
-        $formulirs = $formulirs->where('status_klaim', true);
-        $wilayahs = Wilayah::all();
-        $merchants = Merchant::all();
-        // $konfirmasis = Konfirmasi::all();
-
-        return view('adminjr.voc.berhasil', compact('formulirs', 'wilayahs', 'merchants', 'name'));
-    }
-
-    public function showFotoStnk($filename)
-    {
-        $path = storage_path('app/public/uploads/' . $filename);
-
-        if (!file_exists($path)) {
-            abort(404);
-        }
-
-        return response()->file($path);
-    }
-
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::logout();
-        // Redirect ke halaman home
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Anda telah berhasil logout.');
     }
 }
+
+
+
+
+    // public function terimaFormulir($id)
+    // {
+    //     $formulir = Formulir::findOrFail($id);
+    //     // Ubah status_voucher menjadi true (1)
+    //     $formulir->status_voucher = true;
+
+    //     $formulir->save();
+    //     // dump($formulir->save());
+    //     return redirect()->route('admin.voc.klaim');
+    // }
+    // public function vocberhasil()
+    // {
+
+    //     // Filter data formulir berdasarkan status klaim
+
+
+    //     $user = Auth::user();
+    //     $name = $user->name;
+    //     $formulirs = Formulir::all();
+    //     $formulirs = $formulirs->where('status_klaim', true);
+    //     $wilayahs = Wilayah::all();
+    //     $merchants = Merchant::all();
+    //     // $konfirmasis = Konfirmasi::all();
+
+    //     return view('adminjr.voc.berhasil', compact('formulirs', 'wilayahs', 'merchants', 'name'));
+    // }
+
+    // public function showFotoStnk($filename)
+    // {
+    //     $path = storage_path('app/public/uploads/' . $filename);
+
+    //     if (!file_exists($path)) {
+    //         abort(404);
+    //     }
+
+    //     return response()->file($path);
+    // }
