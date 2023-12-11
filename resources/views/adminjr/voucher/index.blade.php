@@ -35,12 +35,8 @@
                             <td>
                                 {{-- detail --}}
                                 <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal{{ $voucher->id }}"><i class="fas fa-solid fa-magnifying-glass"></i></a>
-                                <span>
-                                    {{-- Edit --}}
-                                    <a href="{{ route('voucher.edit', ['voucher' => $voucher->id]) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></span>
-                                <span>
-                                    {{-- Hapus --}}
-                                    <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter{{ $voucher->id }}"><i class="fas fa-trash-alt"></i></a>
+                                {{-- Hapus --}}
+                                <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModalCenter{{ $voucher->id }}"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                         @endforeach
