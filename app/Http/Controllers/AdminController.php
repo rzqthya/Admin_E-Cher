@@ -24,7 +24,7 @@ class AdminController extends Controller
     {
         $adminUser = auth()->user();
         $adminName = $adminUser->nama;
-        //rekpitulasi 
+        //rekpitulasi
         $totalMerchant = Merchant::count();
         $totalVougabung = Voucher::count();
 
@@ -54,8 +54,11 @@ class AdminController extends Controller
 
     public function create()
     {
+        $adminUser = auth()->user();
+        $adminName = $adminUser->nama;
+
         $cities = Kota::all();
-        return view('adminjr.merch.create', compact('cities'));
+        return view('adminjr.merch.create', compact('cities', 'adminName'));
     }
 
 

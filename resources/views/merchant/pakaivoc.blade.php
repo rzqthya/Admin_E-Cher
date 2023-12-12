@@ -9,21 +9,21 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Pemilik</th>
-                            <th>Nopol Kendaraan</th>
-                            <th>No HP</th>
-                            <th>Lokasi Bayar Pajak</th>
-                            <th>Waktu</th>
+                            <th>Nama Customer</th>
+                            <th>Nama Merchant</th>
+                            <th>Wilayah</th>
+                            <th>No Telephone</th>
+                            <th>Tanggal Klaim</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($formulirs as $formulir)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $formulir->nama_user }}</td>
-                                <td>{{ $formulir->nopol }}</td>
-                                <td>{{ $formulir->no_hp }}</td>
-                                <td>{{ $formulir->wilayah->wilayah_samsat }}</td>
+                                <td>{{ $formulir->user->nama }}</td>
+                                <td>{{ $formulir->voucher->merchant }}</td>
+                                <td>{{ $formulir->wilayah->samsat }}</td>
+                                <td>{{ $formulir->user->noTelp }}</td>
                                 <td>{{ $formulir->created_at }}</td>
                             </tr>
                         @endforeach

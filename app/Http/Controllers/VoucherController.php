@@ -25,6 +25,11 @@ class VoucherController extends Controller
         return view('adminjr.voucher.index', compact('vouchers', 'merchants', 'adminName'));
     }
 
+    public function apiGetVoucher(){
+        $vouchers = Voucher::all();
+        return response()->json($vouchers);
+    }
+
     public function create()
     {
         $adminUser = auth()->user();
@@ -46,7 +51,7 @@ class VoucherController extends Controller
             'voucher' => 'required',
             'deskripsi' => 'required',
             'masaBerlaku' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], $messages);
 
         if ($validator->fails()) {

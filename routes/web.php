@@ -1,6 +1,4 @@
 <?php
-
-
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MerchantController;
@@ -46,6 +44,7 @@ Route::middleware(['web'])->group(function () {
     //rute manajemen voucher
     Route::resource('voucher', VoucherController::class)->except(['show']);
     Route::get('/voucher/klaim', [VoucherController::class, 'showKlaim'])->name('admin.voucher.klaim');
+    Route::get('/apiGetVoucher', [VoucherController::class, 'apiGetVoucher'])   ;
 
     // route daftar customer
     Route::resource('customer', CustomerController::class)->except(['show']);

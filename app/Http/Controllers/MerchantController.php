@@ -22,60 +22,41 @@ class MerchantController extends Controller
 
     public function dashboard()
     {
-        return view('merchant.dashboard');
+        // return view('merchant.dashboard');
+            $user = auth()->user();
+            $merchantName = $user->nama;
+
+            $activePage = 'Dashboard';
+
+            return view('merchant.dashboard', compact('merchantName', 'activePage'));
     }
 
     public function index()
     {
-
-        if (Auth::guard('merchant')->check()) {
-            $user = Auth::guard('merchant')->user();
-            $merchantId = $user->id;
-
-
-            $totalTerklaim = Formulir::where('status_klaim', 1)
-                ->where('merchant_id', $merchantId)
-                ->count();
-
-
-            $totalBelumTerklaim = Formulir::where('status_klaim', 0)
-                ->where('merchant_id', $merchantId)
-                ->count();
-
-            $name = $user->merchant;
-            $vouchers = Voucher::where('merchant_id', $merchantId)->get();
-
-            $activePage = 'Dashboard';
-
-            return view('merchant.dashboard', compact('totalTerklaim', 'totalBelumTerklaim', 'name', 'vouchers', 'activePage'));
-        }
+        return view('merchant.dashboard');
     }
 
     public function checkvoc(Request $request)
     {
-        $user = Auth::guard('merchant')->user();
-        $name = $user->nama_merchant;
-
-        // Dapatkan semua formulir yang memiliki merchant_id yang sama dengan merchant yang login
-        $formulirs = Formulir::where('merchant_id', $user->id)->get();
+        $user = auth()->user();
+        $merchantName = $user->nama;
 
         $activePage = 'KlaimVoucher';
 
         // Kembalikan tampilan Blade dengan data formulirs
-        return view('merchant.checkvoc', compact('formulirs', 'name', 'activePage'));
+        return view('merchant.checkvoc', compact('activePage', 'merchantName'));
     }
 
     public function pakaivoc()
     {
-        $user = Auth::guard('merchant')->user();
-        $name = $user->nama_merchant;
+        $user = auth()->user();
+        $merchantName = $user->nama;
 
-
-        $formulirs = Formulir::where('merchant_id', $user->id)->where('status_klaim', true)->get();
+        $formulirs = Formulir::all();
 
         $activePage = 'VoucherTerklaim';
 
-        return view('merchant.pakaivoc', compact('formulirs', 'name', 'activePage'));
+        return view('merchant.pakaivoc', compact('formulirs', 'merchantName', 'activePage'));
     }
 
     public function approve($id)

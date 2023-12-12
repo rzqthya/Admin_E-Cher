@@ -14,7 +14,7 @@ class CreateMerchantTable extends Migration
             $table->unsignedBigInteger('kota_id');
             $table->string('kategori');
             $table->string('alamat');
-            $table->timestamp('created_at')->nullable();
+            $table->timestamp('created_at')->useCurrent();
             $table->foreign('users_id')->references('id')->on('users');
             $table->foreign('kota_id')->references('id')->on('kotas');
         });

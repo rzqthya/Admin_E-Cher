@@ -114,7 +114,7 @@
 
                                     <div class="mb-3">
                                         <strong>Tanggal Terdaftar:</strong>
-                                        <p>{{ $voucher->created_at->format('Y-m-d') }}</p>
+                                        <p>{{ $voucher->created_at }}</p>
                                     </div>
                                 </div>
                             </div>

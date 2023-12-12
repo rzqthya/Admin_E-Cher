@@ -19,7 +19,7 @@ class MerchantSeeder extends Seeder
         $merchantUser = User::where('role', 'merchant')->first();
 
         if ($merchantUser) {
-           
+
             $data = [
                 [
                     'users_id' => $merchantUser->id,
@@ -29,10 +29,8 @@ class MerchantSeeder extends Seeder
                     'alamat' => 'JL. SEMARANG NO 45',
                     'created_at' => now(),
                 ],
-             
             ];
 
-        
             Merchant::insert($data);
         }
     }
