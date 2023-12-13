@@ -10,7 +10,7 @@ class Merchant extends Model
 
     protected $table = 'merchants';
 
-    public $timestamps = false; 
+    public $timestamps = false;
 
     protected $dates = [
         'created_at',

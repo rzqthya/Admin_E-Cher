@@ -7,8 +7,8 @@
                 <div class="card">
                     <div class="seo-fact sbg1">
                         <div class="p-4 d-flex justify-content-between align-items-center">
-                            <div class="seofct-icon"><i class="ti-gift"></i> Voucher Terklaim</div>
-                    
+                            <div class="seofct-icon"><i class="ti-gift"></i> Voucher Terklaim (Active) </div>
+                            {{-- <div class="seofct-icon" style="font-size: 2em;">{{ $totalVoc }}</div> --}}
                         </div>
                         <canvas id="seolinechart1" height="50"></canvas>
                     </div>
@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="seo-fact sbg2">
                         <div class="p-4 d-flex justify-content-between align-items-center">
-                            <div class="seofct-icon"><i class="ti-ticket"></i> Voucher Belum Terklaim
+                            <div class="seofct-icon"><i class="ti-ticket"></i> Voucher Teklaim (Used)
                             </div>
 
                         </div>

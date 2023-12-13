@@ -55,23 +55,17 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('voucher.index') }}">Daftar Voucher</a>     
-                <a class="collapse-item" href="{{ route('admin.voucher.klaim') }}">Voucher Terklaim</a>     
+                <a class="collapse-item" href="{{ route('voucher.index') }}">Daftar Voucher</a>
+                <a class="collapse-item" href="{{ route('admin.voucher.klaim') }}">Voucher Terklaim</a>
             </div>
         </div>
     </li>
     {{-- Users --}}
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#usersdropdown" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link" href="{{ route('customer.index') }}">
             <i class="fa-solid fa-user"></i>
-            <span>Users</span>
+            <span> Customer </span>
         </a>
-        <div id="usersdropdown" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('customer.index') }}"> Daftar Pelanggan</a>
-
-            </div>
-        </div>
     </li>
 
     <!-- Divider -->

@@ -26,14 +26,14 @@
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
-                        @if ($user->role == 'customer')
-                        <tr>
-                            <td>{{ $user->nama }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->noTelp }}</td>
-                            <td>{{ $user->created_at }}</td>
-                        </tr>
-                        @endif
+                            @if ($user->role == 'customer')
+                            <tr>
+                                <td>{{ $user->nama }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->noTelp }}</td>
+                                <td>{{ $user->created_at }}</td>
+                            </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

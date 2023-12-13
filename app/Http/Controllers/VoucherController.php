@@ -77,7 +77,7 @@ class VoucherController extends Controller
 
         $vouchers->save();
 
-        return redirect()->route('adminjr.voucher.index')->with('success', 'Voucher berhasil ditambahkan.');
+        return redirect()->route('voucher.index')->with('success', 'Voucher berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -89,7 +89,7 @@ class VoucherController extends Controller
         $merchants = Merchant::all();
         $vouchers = Voucher::find($id);
 
-        return view('adminjr.voucher.edit', compact('users','merchants', 'vouchers', 'adminName'));
+        return view('admin.edit', compact('users','merchants', 'vouchers', 'adminName'));
     }
 
     public function update(Request $request, $id)
@@ -104,7 +104,7 @@ class VoucherController extends Controller
         $vouchers->save();
         // dd($voucher->save());
 
-        return redirect()->route('adminjr.voucher')->with('success', 'Data berhasil diperbarui');
+        return redirect()->route('voucher.index')->with('success', 'Data berhasil diperbarui');
     }
 
     public function showKlaim()
@@ -124,7 +124,7 @@ class VoucherController extends Controller
         $voucher = Voucher::find($id);
         $voucher->delete();
 
-        return redirect()->route('adminjr.voucher.index');
+        return redirect()->route('voucher.index');
     }
 
 }

@@ -6,6 +6,7 @@ use App\Models\Formulir;
 use App\Models\Kota;
 use App\Models\Merchant;
 use App\Models\Voucher;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

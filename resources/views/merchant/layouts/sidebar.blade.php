@@ -12,16 +12,16 @@
                 <ul class="metismenu" id="menu">
                     <li>
                         <a href="{{ route('merchant.dashboard') }}" aria-expanded="true"><i
-                                class="ti-dashboard"></i><span>dashboard</span></a>
+                                class="ti-dashboard"></i><span>Dashboard</span></a>
                     </li>
                     <li>
                         <a href="{{ route('merchant.checkvoc') }}" aria-expanded="true"><i
                                 class="fa fa-check-square-o"></i>
-                            <span>Klaim Voucher</span></a>
+                            <span>Tukar Voucher</span></a>
                     </li>
                     <li>
                         <a href="{{ route('merchant.pakaivoc') }}" aria-expanded="true"><i class="fa fa-check"></i>
-                            <span>Voucher Terklaim</span></a>
+                            <span>Voucher Terpakai</span></a>
                     </li>
                 </ul>
             </nav>

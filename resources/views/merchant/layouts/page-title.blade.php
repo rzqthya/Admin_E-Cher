@@ -2,10 +2,9 @@
     <div class="row align-items-center">
         <div class="col-sm-6">
             <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title pull-left">Dashboard</h4>
-                <ul class="breadcrumbs pull-left">
-                    <li><a href="{{ route('merchant.dashboard') }}">Home</a></li>
-                </ul>
+                <h4 class="page-title pull-left">
+                    <a href="{{ route('merchant.dashboard') }}" style="color: black;">Dashboard</a>
+                </h4>
             </div>
         </div>
         <div class="col-sm-6 clearfix">

@@ -20,11 +20,11 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Merchant Tergabung</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                {{ $totalMerchant}}
+                                {{ $totalMerchant }}
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-user-check fa-2x text-gray-300"></i>
+                            <i class="fa-solid fa-store fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                All Voucher Bergabung </div>
+                                All Voucher </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 {{ $totalVougabung }}
                             </div>
@@ -58,18 +58,17 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Voucher
-                                Terpakai
-                            </div>
+                                Terklaim </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                        null
+                                        {{ $totalKlaim }}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                            <i class="fa-solid fa-receipt fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -83,20 +82,20 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Menunggu validasi</div>
+                                All Customer </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-
+                                {{ $totalCust }}
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                            <i class="fas fa-user-check fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
     <!-- Content Row -->
 
     {{-- <div class="row">
@@ -163,9 +162,5 @@
                 </div>
             </div> --}}
     {{-- </div> --}}
-
-
-
-</div>
 @endsection
 <!-- /.container-fluid -->

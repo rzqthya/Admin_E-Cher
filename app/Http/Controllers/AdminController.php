@@ -6,6 +6,7 @@ use App\Models\Kota;
 use App\Models\Merchant;
 use App\Models\User;
 use App\Models\Voucher;
+use App\Models\Formulir;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -27,8 +28,10 @@ class AdminController extends Controller
         //rekpitulasi
         $totalMerchant = Merchant::count();
         $totalVougabung = Voucher::count();
+        $totalKlaim = Formulir::count();
+        $totalCust = User::where('role', 'customer')->count();
 
-        return view('adminjr.dash', compact('totalMerchant', 'totalVougabung', 'adminName'));
+        return view('adminjr.dash', compact('totalMerchant', 'totalVougabung', 'adminName', 'totalKlaim', 'totalCust'));
     }
 
     public function index()
