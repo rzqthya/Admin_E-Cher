@@ -28,6 +28,9 @@ Auth::routes();
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::post('/login', [HomeController::class, 'login']);
+
+
+    Route::get('/apiGetVoucher', [VoucherController::class, 'apiGetVoucher']);
 });
 
 //middleware admin
@@ -44,10 +47,10 @@ Route::middleware(['web'])->group(function () {
     //rute manajemen voucher
     Route::resource('voucher', VoucherController::class)->except(['show']);
     Route::get('/voucher/klaim', [VoucherController::class, 'showKlaim'])->name('admin.voucher.klaim');
-    Route::get('/apiGetVoucher', [VoucherController::class, 'apiGetVoucher'])   ;
+
 
     // route daftar customer
-    Route::resource('customer', CustomerController::class)->except(['show']);
+    Route::get('/customer',[AdminController::class, 'customerView'])->name('customer.index');
 });
 
 Route::middleware(['merchant'])->group(function () {

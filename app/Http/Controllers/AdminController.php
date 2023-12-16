@@ -45,6 +45,16 @@ class AdminController extends Controller
         return view('adminjr.merch.index', compact('cities', 'merchants', 'adminName'));
     }
 
+    public function customerView()
+    {
+        $adminUser = auth()->user();
+        $adminName = $adminUser->nama;
+
+        $users = User::all();
+
+        return view('adminjr.user.index', compact('users', 'adminName'));
+    }
+
 
     public function profile()
     {

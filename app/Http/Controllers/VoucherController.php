@@ -25,10 +25,10 @@ class VoucherController extends Controller
         return view('adminjr.voucher.index', compact('vouchers', 'merchants', 'adminName'));
     }
 
-    // public function apiGetVoucher(){
-    //     $vouchers = Voucher::all();
-    //     return response()->json($vouchers);
-    // }
+    public function apiGetVoucher(){
+        $vouchers = Voucher::all();
+        return response()->json($vouchers);
+    }
 
     public function create()
     {
