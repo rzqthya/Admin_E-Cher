@@ -24,12 +24,12 @@ class MerchantController extends Controller
     public function dashboard()
     {
         // return view('merchant.dashboard');
-            $user = auth()->user();
-            $merchantName = $user->nama;
+        $user = auth()->user();
+        $merchantName = $user->nama;
 
-            $activePage = 'Dashboard';
+        $activePage = 'Dashboard';
 
-            return view('merchant.dashboard', compact('merchantName', 'activePage'));
+        return view('merchant.dashboard', compact('merchantName', 'activePage'));
     }
 
     public function index()
@@ -53,11 +53,19 @@ class MerchantController extends Controller
         $user = auth()->user();
         $merchantName = $user->nama;
 
-        $formulirs = Formulir::all();
+        if ($user->merchant && $user->merchant->vouchers) {
+            $merchantId = $user->merchant->id;
 
-        $activePage = 'VoucherTerklaim';
+            $formulirs = Formulir::whereHas('voucher', function ($query) use ($merchantId) {
+                $query->where('merchant_id', $merchantId);
+            })->get();
 
-        return view('merchant.pakaivoc', compact('formulirs', 'merchantName', 'activePage'));
+            $activePage = 'VoucherTerklaim';
+
+            return view('merchant.pakaivoc', compact('formulirs', 'merchantName', 'activePage'));
+        }
+
+        return redirect()->route('merchant.dashboard')->with('error', 'Merchant tidak memiliki voucher atau data terkait');
     }
 
     public function approve($id)
