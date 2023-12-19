@@ -1,8 +1,9 @@
 <?php
+
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\Api\CustomerController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -22,15 +23,18 @@ use App\Http\Controllers\HomeController;
 
 Auth::routes();
 
-// Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-// Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::post('/login', [HomeController::class, 'login']);
 
+    //API ROUTE
+    Route::get('/APIvoucher', [CustomerController::class, 'apiGetVoucher']);
+    Route::get('/apiGetCustomer', [CustomerController::class, 'apiGetCustomer']);
+    Route::get('/apiGetMerchant', [CustomerController::class, 'apiGetMerchant']);
+    Route::post('/register', [CustomerController::class, 'register']);
 
-    Route::get('/apiGetVoucher', [VoucherController::class, 'apiGetVoucher']);
+
 });
 
 //middleware admin
@@ -50,7 +54,7 @@ Route::middleware(['web'])->group(function () {
 
 
     // route daftar customer
-    Route::get('/customer',[AdminController::class, 'customerView'])->name('customer.index');
+    Route::get('/customer', [AdminController::class, 'customerView'])->name('customer.index');
 });
 
 Route::middleware(['merchant'])->group(function () {

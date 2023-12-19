@@ -13,11 +13,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+
     protected $fillable = [
         'nama',
         'email',
@@ -35,27 +31,18 @@ class User extends Authenticatable
         'updated_at',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the merchant associated with the user.
-     */
+
     public function merchant()
     {
         return $this->hasOne(Merchant::class, 'users_id');
     }
 
-    /**
-     * Get the formulirs associated with the user.
-     */
     public function formulirs()
     {
         return $this->hasMany(Formulir::class, 'users_id');
