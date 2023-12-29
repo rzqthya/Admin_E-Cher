@@ -32,9 +32,7 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/APIvoucher', [CustomerController::class, 'apiGetVoucher']);
     Route::get('/apiGetCustomer', [CustomerController::class, 'apiGetCustomer']);
     Route::get('/apiGetMerchant', [CustomerController::class, 'apiGetMerchant']);
-    Route::post('/register', [CustomerController::class, 'register']);
-
-
+    Route::get('/APIwilayah', [CustomerController::class, 'apiGetWilayah']);
 });
 
 //middleware admin
