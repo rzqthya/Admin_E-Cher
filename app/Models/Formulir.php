@@ -10,6 +10,8 @@ class Formulir extends Model
 
     protected $table = 'formulirs';
 
+    public $timestamps = false;
+
     public function voucher()
     {
         return $this->belongsTo(Voucher::class, 'voucher_id');

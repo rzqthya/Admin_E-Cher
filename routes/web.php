@@ -29,10 +29,8 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/login', [HomeController::class, 'login']);
 
     //API ROUTE
-    Route::get('/APIvoucher', [CustomerController::class, 'apiGetVoucher']);
-    Route::get('/apiGetCustomer', [CustomerController::class, 'apiGetCustomer']);
-    Route::get('/apiGetMerchant', [CustomerController::class, 'apiGetMerchant']);
-    Route::get('/APIwilayah', [CustomerController::class, 'apiGetWilayah']);
+  
+
 });
 
 //middleware admin

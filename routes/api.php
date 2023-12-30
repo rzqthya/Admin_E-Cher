@@ -15,10 +15,34 @@ use App\Http\Controllers\Api\CustomerController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::middleware('auth:sanctum')->group(function () {
+   
+    
 });
 
 Route::post('/register', [CustomerController::class, 'register']);
 Route::post('/login', [CustomerController::class, 'loginCustomer']);
 Route::post('/logout', [CustomerController::class, 'logoutCustomer']);
+
+Route::get('/getVoucher', [CustomerController::class, 'apiGetVoucher']);
+Route::get('/getCustomer', [CustomerController::class, 'apiGetCustomer']);
+Route::get('/getMerchant', [CustomerController::class, 'apiGetMerchant']);
+Route::get('/getWilayah', [CustomerController::class, 'apiGetWilayah']);
+Route::get('/getKota', [CustomerController::class, 'apiGetKota']);
+
+//FILTER
+Route::get('/merchants/by-category/{category}', [CustomerController::class, 'getMerchantsByCategory']);
+Route::get('/vouchers/by-city/{city}', [CustomerController::class, 'getVouchersByCity']);
+Route::get('/vouchers/by-date', [CustomerController::class, 'getVouchersByDate']);
+
+
+
+
+Route::post('/formulir', [CustomerController::class, 'store']);
+
+// Route::post('/formulir', [CustomerController::class, 'store']);
+

@@ -54,10 +54,10 @@ class VoucherController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $originalFilename = $file->getClientOriginalName();
-
             $file->storeAs('public/voucher', $originalFilename);
         } else {
             $originalFilename = null;

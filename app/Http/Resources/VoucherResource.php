@@ -24,6 +24,7 @@ class VoucherResource extends JsonResource
             'id' => $this->id,
             'merchant_id' => $this->merchant_id,
             'voucher' => $this->voucher,
+            'kota' => $this->merchant->kota->kota,
             'deskripsi' => $this->deskripsi,
             'masaBerlaku' => $this->masaBerlaku,
             'image' => $this->image,

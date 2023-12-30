@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Formulir;
+use App\Models\Kota;
 use App\Models\Wilayah;
 use App\Models\Merchant;
 use App\Models\Voucher;
-use Validator;
 use App\Http\Resources\CustomerResource;
 use App\Http\Resources\MerchantResource;
 use App\Http\Resources\VoucherResource;
@@ -26,6 +27,48 @@ class CustomerController extends BaseController
         $customers = User::where('role', 'customer')->get();
         return $this->sendResponse(CustomerResource::collection($customers), 'Customer retrieved successfully.');
     }
+
+    //FILTER
+    public function getMerchantsByCategory($category)
+    {
+        $merchants = Merchant::where('kategori', $category)->get();
+
+        return response()->json($merchants);
+    }
+
+    public function getVouchersByCity($city)
+    {
+
+        $vouchers = Voucher::with('merchant.kota')
+            ->whereHas('merchant.kota', function ($query) use ($city) {
+                $query->where('id', $city);
+            })->get();
+
+        return response()->json($vouchers);
+
+        // $city = strtolower($city);
+
+        // $vouchers = Voucher::whereHas('merchant.kota', function ($query) use ($city) {
+        //     // Menggunakan 'LIKE' dan '%' wildcard untuk pencarian yang lebih fleksibel
+        //     // 'LOWER' digunakan untuk membuat pencarian tidak case-sensitive
+        //     $query->whereRaw('LOWER(nama) LIKE ?', ["%{$city}%"]);
+        // })->get();
+
+    }
+
+    public function getVouchersByDate(Request $request)
+    {
+        try {
+            $date = Carbon::parse($request->query('date'));
+            $vouchers = Voucher::where('masaBerlaku', '>=', $date)->get();
+            // ...
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Format tanggal tidak valid.'], 400);
+        }
+
+        return response()->json($vouchers);
+    }
+    //FILTER END
 
 
     public function apiGetVoucher()
@@ -49,10 +92,53 @@ class CustomerController extends BaseController
         return response()->json($response);
     }
 
+    public function apiGetKota()
+    {
+
+        $kotaData = Kota::all();
+
+        $response = $kotaData->map(function ($kota) {
+            return [
+                'id' => $kota->id,
+                'kota' => $kota->kota,
+            ];
+        });
+
+        return response()->json($response);
+    }
+
     public function apiGetMerchant()
     {
         $merchants = Merchant::all();
         return $this->sendResponse(MerchantResource::collection($merchants), 'Merchant retrieved successfully.');
+    }
+
+    public function store(Request $request)
+    {
+        $formulir = new Formulir;
+        $formulir->voucher_id = $request->voucher_id;
+        $formulir->wilayah_id = $request->wilayah_id;
+
+        // Mendapatkan ID pengguna yang terautentikasi
+        $formulir->users_id = Auth::id();
+
+        $formulir->nama = $request->nama;
+        $formulir->nopol = $request->nopol;
+        $formulir->status = '0';
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $originalFilename = $file->getClientOriginalName();
+            $file->storeAs('public/stnk', $originalFilename);
+
+            $formulir->image = 'stnk/' . $originalFilename;
+        } else {
+            $originalFilename = null;
+        }
+
+        $formulir->save();
+
+        return response()->json(['message' => 'Formulir berhasil disimpan']);
     }
 
     public function register(Request $request)
@@ -69,26 +155,41 @@ class CustomerController extends BaseController
 
     public function loginCustomer(Request $request)
     {
-        // $pass = bcrypt($request->passsword);
-        $credentials = $request->only('email', 'password');
-        // // print($credentials);
-        print($request->email);
-        printf($request->password);
-        // Gunakan metode attempt untuk otentikasi
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
+        // // $pass = bcrypt($request->passsword);
+        // $credentials = $request->only('email', 'password');
+        // // // print($credentials);
+        // print($request->email);
+        // printf($request->password);
 
-            // Jika otentikasi berhasil, berikan respons dengan token atau informasi pengguna yang lain
-            return response()->json(['user' => $user, 'message' => 'Login successful']);
+        // if (Auth::attempt($credentials)) {
+        //     $user = Auth::user();
+        //     return response()->json(['user' => $user, 'message' => 'Login successful']);
+        // } else {
+
+        //     return response()->json(['error' => 'Invalid credentials'], 401);
+        // }
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Login berhasil
+            $user = Auth::user();
+            $userId = $user->id;
+
+            session(['users_id' => $userId]);
+
+            return response()->json(['users_id' => $userId]);
         } else {
-            // Jika otentikasi gagal, berikan respons dengan pesan kesalahan
+            // Login gagal
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
+
+        return response()->json(['message' => 'Invalid credentials'], 401);
     }
 
     public function logoutCustomer()
     {
-        // Gunakan facade Auth untuk melakukan logout
+
         Auth::logout();
 
         // Return respons
