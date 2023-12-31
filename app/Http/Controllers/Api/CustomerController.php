@@ -53,8 +53,6 @@ class CustomerController extends BaseController
         // $city = strtolower($city);
 
         // $vouchers = Voucher::whereHas('merchant.kota', function ($query) use ($city) {
-        //     // Menggunakan 'LIKE' dan '%' wildcard untuk pencarian yang lebih fleksibel
-        //     // 'LOWER' digunakan untuk membuat pencarian tidak case-sensitive
         //     $query->whereRaw('LOWER(nama) LIKE ?', ["%{$city}%"]);
         // })->get();
 
@@ -155,8 +153,7 @@ class CustomerController extends BaseController
         $formulir->voucher_id = $request->voucher_id;
         $formulir->wilayah_id = $request->wilayah_id;
 
-        // Mendapatkan ID pengguna yang terautentikasi
-        $formulir->users_id = Auth::id();
+        $formulir->users_id = $request->users_id;
 
         $formulir->nama = $request->nama;
         $formulir->nopol = $request->nopol;
