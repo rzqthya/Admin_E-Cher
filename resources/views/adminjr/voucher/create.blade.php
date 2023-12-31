@@ -13,7 +13,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Form Tambah Voucher Baru</h6>
+            <h6 class="m-0 font-weight-bold text-danger">Form Tambah Voucher Baru</h6>
         </div>
         <div class="card-body">
             <form action="{{ route('voucher.store') }}" method="POST" enctype="multipart/form-data">
@@ -46,7 +46,7 @@
                     <input type="file" class="form-control" id="image" name="image" accept="image/*">
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
+                <button type="submit" class="btn btn-danger mt-4 pr-4 pl-4">Submit</button>
             </form>
         </div>
     </div>

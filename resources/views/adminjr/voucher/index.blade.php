@@ -6,12 +6,12 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Daftar Voucher</h1>
     <p class="mb-4">
-        <a href="{{ route('voucher.create') }}" class="btn btn-primary">Tambah Voucher Baru</a>
+        <a href="{{ route('voucher.create') }}" class="btn btn-danger">Tambah Voucher Baru</a>
     </p>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Daftar Voucher</h6>
+            <h6 class="m-0 font-weight-bold text-danger">Daftar Voucher</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">

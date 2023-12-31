@@ -67,7 +67,7 @@ class CustomerController extends BaseController
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);
         }
-        
+
         $user->update([
             'nama' => $request->input('nama'),
             'email' => $request->input('email'),
