@@ -1,4 +1,4 @@
-<div class="sidebar-menu bg-danger">
+<div class="sidebar-menu bg-danger" style="background: #dc3545">
     <div class="sidebar-header bg-danger">
         <div class="logo">
             <a href="{{ route('merchant.dashboard') }}"><img class="rounded mr-1"
