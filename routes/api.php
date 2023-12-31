@@ -20,14 +20,18 @@ use App\Http\Controllers\Api\CustomerController;
 // });
 
 Route::middleware('auth:sanctum')->group(function () {
-   
-    
 });
+
 
 Route::post('/register', [CustomerController::class, 'register']);
 Route::post('/login', [CustomerController::class, 'loginCustomer']);
 Route::post('/logout', [CustomerController::class, 'logoutCustomer']);
 
+//UPDATE DELETE VIEW USERS 
+Route::get('/users/{id}', [CustomerController::class, 'getUserById']);
+Route::put('/users/{id}', [CustomerController::class, 'update']);
+
+//DATA CUSTOMER,VOUCHER,MERCHANT
 Route::get('/getVoucher', [CustomerController::class, 'apiGetVoucher']);
 Route::get('/getCustomer', [CustomerController::class, 'apiGetCustomer']);
 Route::get('/getMerchant', [CustomerController::class, 'apiGetMerchant']);
@@ -45,4 +49,3 @@ Route::get('/vouchers/by-date', [CustomerController::class, 'getVouchersByDate']
 Route::post('/formulir', [CustomerController::class, 'store']);
 
 // Route::post('/formulir', [CustomerController::class, 'store']);
-

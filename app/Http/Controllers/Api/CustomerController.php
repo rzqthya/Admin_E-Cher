@@ -56,20 +56,52 @@ class CustomerController extends BaseController
 
     }
 
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+        
+        $user->update([
+            'nama' => $request->input('nama'),
+            'email' => $request->input('email'),
+            'noTelp' => $request->input('noTelp'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+
+        return response()->json(['message' => 'User updated successfully']);
+    }
+
+    public function getUserById($id)
+    {
+        try {
+            $user = User::find($id);
+
+            if (!$user) {
+                return response()->json(['error' => 'User not found'], 404);
+            }
+
+            return response()->json(['user' => $user], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Server error'], 500);
+        }
+    }
+
     public function getVouchersByDate(Request $request)
     {
         try {
             $date = Carbon::parse($request->query('date'));
             $vouchers = Voucher::where('masaBerlaku', '>=', $date)->get();
-            // ...
         } catch (\Exception $e) {
             return response()->json(['error' => 'Format tanggal tidak valid.'], 400);
         }
 
         return response()->json($vouchers);
     }
-    //FILTER END
 
+    //FILTER END
 
     public function apiGetVoucher()
     {
