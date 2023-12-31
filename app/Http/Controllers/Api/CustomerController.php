@@ -31,7 +31,11 @@ class CustomerController extends BaseController
     //FILTER
     public function getMerchantsByCategory($category)
     {
-        $merchants = Merchant::where('kategori', $category)->get();
+        $merchants = Voucher::with('merchant')
+            ->whereHas('merchant', function ($query) use ($category) {
+                $query->where('kategori', $category);
+            })
+            ->get();
 
         return response()->json($merchants);
     }

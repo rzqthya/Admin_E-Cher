@@ -29,7 +29,19 @@ class MerchantController extends Controller
 
         $activePage = 'Dashboard';
 
-        return view('merchant.dashboard', compact('merchantName', 'activePage'));
+        if ($user->merchant && $user->merchant->vouchers) {
+            $merchantId = $user->merchant->id;
+
+            $countFormulirs = Formulir::whereHas('voucher', function ($query) use ($merchantId) {
+                $query->where('merchant_id', $merchantId);
+            })->count();
+
+            $countVoc = Voucher::whereHas('merchant', function ($query) use ($merchantId) {
+                $query->where('merchant_id', $merchantId);
+            })->count();
+
+        return view('merchant.dashboard', compact('merchantName', 'activePage', 'countFormulirs', 'countVoc'));
+        }
     }
 
     public function index()
@@ -42,10 +54,8 @@ class MerchantController extends Controller
         $user = auth()->user();
         $merchantName = $user->nama;
 
-        $activePage = 'KlaimVoucher';
-
         // Kembalikan tampilan Blade dengan data formulirs
-        return view('merchant.checkvoc', compact('activePage', 'merchantName'));
+        return view('merchant.checkvoc', compact('merchantName'));
     }
 
     public function pakaivoc()
@@ -60,9 +70,7 @@ class MerchantController extends Controller
                 $query->where('merchant_id', $merchantId);
             })->get();
 
-            $activePage = 'VoucherTerklaim';
-
-            return view('merchant.pakaivoc', compact('formulirs', 'merchantName', 'activePage'));
+            return view('merchant.pakaivoc', compact('formulirs', 'merchantName'));
         }
 
         return redirect()->route('merchant.dashboard')->with('error', 'Merchant tidak memiliki voucher atau data terkait');
