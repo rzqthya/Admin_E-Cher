@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+// use Image;
 
 
 class VoucherController extends Controller
@@ -35,7 +36,7 @@ class VoucherController extends Controller
         $users = User::where('role', 'merchant')->get();
         $merchants = Merchant::all();
 
-        return view('adminjr.voucher.create', compact('merchants','users', 'adminName'));
+        return view('adminjr.voucher.create', compact('merchants', 'users', 'adminName'));
     }
 
     public function store(Request $request)
@@ -58,6 +59,13 @@ class VoucherController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $originalFilename = $file->getClientOriginalName();
+
+            // // Membaca gambar dari file yang diunggah
+            // $image = Image::make($file);
+
+            // // Mengubah ukuran gambar
+            // $image->resize(100, 100);
+            
             $file->storeAs('public/voucher', $originalFilename);
         } else {
             $originalFilename = null;
@@ -86,7 +94,7 @@ class VoucherController extends Controller
         $merchants = Merchant::all();
         $vouchers = Voucher::find($id);
 
-        return view('admin.edit', compact('users','merchants', 'vouchers', 'adminName'));
+        return view('admin.edit', compact('users', 'merchants', 'vouchers', 'adminName'));
     }
 
     public function update(Request $request, $id)
@@ -112,7 +120,6 @@ class VoucherController extends Controller
         $formulirs = Formulir::all();
 
         return view('adminjr.voucher.klaim', compact('formulirs', 'adminName'));
-
     }
 
     public function destroy($id)
@@ -123,5 +130,4 @@ class VoucherController extends Controller
 
         return redirect()->route('voucher.index');
     }
-
 }

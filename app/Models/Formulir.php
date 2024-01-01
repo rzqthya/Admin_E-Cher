@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Formulir extends Model
 {
-    protected $fillable = ['voucher_id', 'wilayah_id', 'users_id', 'nama', 'nopol', 'image'];
+    protected $fillable = ['voucher_id', 'wilayah_id', 'users_id', 'nama', 'nopol', 'image', 'status', 'unique_code'];
 
     protected $table = 'formulirs';
 
-    public $timestamps = false;
+    // public $timestamps = false;
+
+    // protected $dates = [
+    //     'created_at',
+    //     'updated_at',
+    // ];
 
     public function voucher()
     {

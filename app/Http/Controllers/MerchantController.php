@@ -21,9 +21,27 @@ class MerchantController extends Controller
         $this->middleware('auth');
     }
 
+
+    public function Updatestatus(Request $request)
+    {
+        $voucherCode = $request->input('voucher_code');
+        $formulir = Formulir::where('unique_code', $voucherCode)->first();
+
+        if (!$formulir) {
+            return redirect()->back()->with('error', 'Kode Voucher sudah digunakan atau tidak valid.');
+        }
+
+        if ($formulir->status == 0) {
+            $formulir->status = 1;
+            $formulir->save();
+            return redirect()->back()->with('success', 'Tukar Voucher Berhasil.');
+        } else {
+            return redirect()->back()->with('error', 'Voucher sudah digunakan atau tidak valid.');
+        }
+    }
+
     public function dashboard()
     {
-        // return view('merchant.dashboard');
         $user = auth()->user();
         $merchantName = $user->nama;
 
@@ -40,7 +58,10 @@ class MerchantController extends Controller
                 $query->where('merchant_id', $merchantId);
             })->count();
 
-        return view('merchant.dashboard', compact('merchantName', 'activePage', 'countFormulirs', 'countVoc'));
+            $totalVoc = Formulir::where('status', 1)->count();
+
+
+            return view('merchant.dashboard', compact('merchantName', 'activePage', 'countFormulirs', 'countVoc', 'totalVoc'));
         }
     }
 
