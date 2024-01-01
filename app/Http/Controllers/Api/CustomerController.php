@@ -13,19 +13,28 @@ use App\Models\Voucher;
 use App\Http\Resources\CustomerResource;
 use App\Http\Resources\MerchantResource;
 use App\Http\Resources\VoucherResource;
+use App\Http\Resources\FormulirResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Psy\TabCompletion\Matcher\FunctionsMatcher;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class CustomerController extends BaseController
 {
-    public function apiGetCustomer()
+       public function apiGetCustomer()
     {
         $customers = User::where('role', 'customer')->get();
         return $this->sendResponse(CustomerResource::collection($customers), 'Customer retrieved successfully.');
+    }
+
+    public function getActiveVouchers()
+    {
+        $activeVouchers = Formulir::where('status', 0)->get();
+
+        return $this->sendResponse(FormulirResource::collection($activeVouchers), 'active retrieved successfully.');
     }
 
     //FILTER
@@ -158,6 +167,8 @@ class CustomerController extends BaseController
         $formulir->nama = $request->nama;
         $formulir->nopol = $request->nopol;
         $formulir->status = '0';
+        $formulir->created_at = now();
+        $formulir->updated_at = now();
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -169,9 +180,27 @@ class CustomerController extends BaseController
             $originalFilename = null;
         }
 
+        $dataForToken = implode('-', [
+            $request->voucher_id,
+            $request->wilayah_id,
+            $request->users_id,
+            $request->nopol
+        ]);
+
+      
+        $hash = sha1($dataForToken);
+    
+        $uniqueCode = substr($hash, 0, 4);
+
+        while (Formulir::where('unique_code', $uniqueCode)->exists()) {
+            $uniqueCode = substr($hash, rand(1, 36), 4);
+        }
+    
+        $formulir->unique_code = $uniqueCode;
+
         $formulir->save();
 
-        return response()->json(['message' => 'Formulir berhasil disimpan']);
+        return response()->json(['message' => 'Formulir berhasil disimpan', 'unique_code' => $uniqueCode]);
     }
 
     public function register(Request $request)

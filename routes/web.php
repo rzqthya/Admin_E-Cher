@@ -57,7 +57,10 @@ Route::middleware(['merchant'])->group(function () {
     Route::get('/merchant/dashboard', [MerchantController::class, 'dashboard'])->name('merchant.dashboard');
     Route::get('/merchant/profile', [MerchantController::class, 'profile'])->name('merchant.profile');
     Route::get('/merchant/checkvoc', [MerchantController::class, 'checkvoc'])->name('merchant.checkvoc');
+    Route::post('/merchant/checkvoc', [MerchantController::class, 'Updatestatus'])->name('merchant.checkvocStatus');
+
     Route::post('/approve/{id}', [MerchantController::class, 'approve'])->name('approve.formulir');
     Route::get('/merchant/pakaivoc', [MerchantController::class, 'pakaivoc'])->name('merchant.pakaivoc');
+
     Route::post('/logout', [MerchantController::class, 'merchantLogout'])->name('merchant.logout');
 });
