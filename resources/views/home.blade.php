@@ -38,7 +38,7 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <div class="login-form-head">
+                    <div class="login-form-head bg-danger">
                         <h4>Login</h4>
                         <p>Login untuk masuk ke halaman dashboard.</p>
                     </div>
@@ -46,7 +46,7 @@
                         <div class="form-gp">
                             <label for="email">Email address</label>
                             <input type="email" name="email" id="email">
-                            <i class="ti-email"></i>
+                            {{-- <i class="ti-email"></i> --}}
                             @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -54,7 +54,7 @@
                         <div class="form-gp">
                             <label for="password">Password</label>
                             <input type="password" name="password" id="password">
-                            <i class="ti-lock"></i>
+                            {{-- <i class="ti-lock"></i> --}}
                             @error('password')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

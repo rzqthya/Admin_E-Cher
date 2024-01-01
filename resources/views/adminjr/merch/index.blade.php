@@ -5,12 +5,12 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Daftar Merchant</h1>
     <p class="mb-4">
-        <a href="{{ route('admin.create') }}" class="btn btn-primary">Tambah Merchant Baru</a>
+        <a href="{{ route('admin.create') }}" class="btn btn-danger">Tambah Merchant Baru</a>
     </p>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Daftar Merchant</h6>
+            <h6 class="m-0 font-weight-bold text-danger">Daftar Merchant</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">

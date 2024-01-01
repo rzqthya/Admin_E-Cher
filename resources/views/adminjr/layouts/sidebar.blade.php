@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     {{-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -8,7 +8,7 @@
     </a> --}}
     <div class="sidebar-header">
         <div class="logo d-flex align-items-center justify-content-center">
-            <a href="{{ route('merchant.dashboard') }}"><img class="rounded mr-1 mt-2" src="{{ Vite::asset('resources/images/E-Cher.png') }}" width="120" height="90" alt="image">
+            <a href="{{ route('merchant.dashboard') }}"><img class="rounded mr-1 mt-2" src="{{ Vite::asset('resources/images/ECher.png') }}" width="120" height="90" alt="image">
             </a>
         </div>
     </div>

@@ -8,7 +8,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Daftar Voucher Terklaim</h6>
+            <h6 class="m-0 font-weight-bold text-danger">Daftar Voucher Terklaim</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -32,19 +32,19 @@
                             <td>{{ $formulir->wilayah->samsat }}</td>
                             <td>{{ $formulir->user->email }}</td>
                             <td>{{ $formulir->nama }}</td>
-                            <td>{{ $formulir->nopol }}</td>                   
+                            <td>{{ $formulir->nopol }}</td>
                             <td>{{ $formulir->image }}</td>
-                            <td>{{ $formulir->created_at }}</td>  
+                            <td>{{ $formulir->created_at }}</td>
                             <td>
                             {{-- detail --}}
-                                <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal{{ $formulir->id }}"><i class="fas fa-solid fa-magnifying-glass"></i></a>
-                            </td>   
+                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal{{ $formulir->id }}"><i class="fas fa-solid fa-magnifying-glass"></i></a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-          
+
 
     </div>
 

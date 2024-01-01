@@ -13,7 +13,7 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Form Tambah Merchant Baru</h6>
+                <h6 class="m-0 font-weight-bold text-danger">Form Tambah Merchant Baru</h6>
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.store') }}" method="POST">
@@ -71,7 +71,7 @@
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
 
-                    <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
+                    <button type="submit" class="btn btn-danger mt-4 pr-4 pl-4">Submit</button>
                 </form>
             </div>
         </div>

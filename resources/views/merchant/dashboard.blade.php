@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <div class="seo-fact sbg1">
+                <div class="seo-fact sbg3">
                     <div class="p-4 d-flex justify-content-between align-items-center">
                         <div class="seofct-icon"><i class="ti-ticket"></i>Jumlah Voucher</div>
                         <div class="seofct-icon" style="font-size: 2em;">{{ $countVoc }}</div>
@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <div class="seo-fact sbg2">
+                <div class="seo-fact sbg3">
                     <div class="p-4 d-flex justify-content-between align-items-center">
                         <div class="seofct-icon"><i class="ti-gift"></i> Voucher Terpakai </div>
                         <div class="seofct-icon" style="font-size: 2em;">{{ $totalVoc }}</div>
