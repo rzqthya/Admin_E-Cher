@@ -148,6 +148,7 @@ class CustomerController extends BaseController
 
         $kotaData = Kota::all();
 
+
         $response = $kotaData->map(function ($kota) {
             return [
                 'id' => $kota->id,
