@@ -31,6 +31,8 @@ class FormulirResource extends JsonResource
             'nopol' => $this->nopol,
             'image' => $this->voucher->image,
             'token' => $this->unique_code,
+            'status' => $this->status,
+
         ];
     }
 }

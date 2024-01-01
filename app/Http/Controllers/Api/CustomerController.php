@@ -24,7 +24,7 @@ use Illuminate\Support\Str;
 
 class CustomerController extends BaseController
 {
-       public function apiGetCustomer()
+    public function apiGetCustomer()
     {
         $customers = User::where('role', 'customer')->get();
         return $this->sendResponse(CustomerResource::collection($customers), 'Customer retrieved successfully.');
@@ -35,6 +35,14 @@ class CustomerController extends BaseController
         $activeVouchers = Formulir::where('status', 0)->get();
 
         return $this->sendResponse(FormulirResource::collection($activeVouchers), 'active retrieved successfully.');
+    }
+
+    public function getUseVouchers()
+    {
+        $useVouchers = Formulir::where('status', 1)->get();
+
+        return $this->sendResponse(FormulirResource::collection($useVouchers), 'Use Voucher retrieved successfully.');
+
     }
 
     //FILTER
@@ -187,15 +195,15 @@ class CustomerController extends BaseController
             $request->nopol
         ]);
 
-      
+
         $hash = sha1($dataForToken);
-    
+
         $uniqueCode = substr($hash, 0, 4);
 
         while (Formulir::where('unique_code', $uniqueCode)->exists()) {
             $uniqueCode = substr($hash, rand(1, 36), 4);
         }
-    
+
         $formulir->unique_code = $uniqueCode;
 
         $formulir->save();

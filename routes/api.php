@@ -45,6 +45,8 @@ Route::get('/vouchers/by-date', [CustomerController::class, 'getVouchersByDate']
 
 //ACTIVE USE VOUCHER
 Route::get('/active-vouchers', [CustomerController::class, 'getActiveVouchers']);
+Route::get('/use-vouchers', [CustomerController::class, 'getUseVouchers']);
+
 
 //HANDLE FORMULIR
 Route::post('/formulir', [CustomerController::class, 'store']);
