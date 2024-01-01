@@ -42,7 +42,6 @@ class CustomerController extends BaseController
         $useVouchers = Formulir::where('status', 1)->get();
 
         return $this->sendResponse(FormulirResource::collection($useVouchers), 'Use Voucher retrieved successfully.');
-
     }
 
     //FILTER
@@ -59,13 +58,30 @@ class CustomerController extends BaseController
 
     public function getVouchersByCity($city)
     {
-
         $vouchers = Voucher::with('merchant.kota')
             ->whereHas('merchant.kota', function ($query) use ($city) {
                 $query->where('id', $city);
             })->get();
 
-        return response()->json($vouchers);
+        $formattedVouchers = $vouchers->map(function ($voucher) {
+            return [
+                'voucher' => $voucher->voucher, 
+                'image' => $voucher->image,
+                'masaBerlaku' => $voucher->masaBerlaku,
+                'deskripsi' => $voucher->deskripsi,
+                'kota' => $voucher->merchant->kota->kota,
+            ];
+        });
+
+       
+        return response()->json($formattedVouchers);
+
+        // $vouchers = Voucher::with('merchant.kota')
+        //     ->whereHas('merchant.kota', function ($query) use ($city) {
+        //         $query->where('id', $city);
+        //     })->get();
+
+        // return response()->json($vouchers);
 
         // $city = strtolower($city);
 
